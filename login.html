@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sign In | Torque — Mobile Tire Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root, html[data-theme='light'] {
+            --bg-body: #F7F9FC;
+            --text-primary: #0A1C2F;
+            --text-secondary: #2C3E50;
+            --accent: #E05A2A;
+            --accent-dark: #C13C0F;
+            --card-bg: #FFFFFF;
+            --border-light: #E2E8F0;
+            --input-bg: #FFFFFF;
+        }
+        html[data-theme='dark'] {
+            --bg-body: #0B1120;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --accent: #F97316;
+            --accent-dark: #EA580C;
+            --card-bg: #1E293B;
+            --border-light: #334155;
+            --input-bg: #0F172A;
+        }
+        body {
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 2rem;
+            backdrop-filter: blur(0px);
+            transition: all 0.2s;
+            max-width: 480px;
+            width: 100%;
+        }
+        .input-field {
+            background: var(--input-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            padding: 0.85rem 1rem;
+            width: 100%;
+            color: var(--text-primary);
+            transition: all 0.2s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 90, 42, 0.15);
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: scale(1.01);
+        }
+        .social-btn {
+            border: 1px solid var(--border-light);
+            background: var(--card-bg);
+            border-radius: 2rem;
+            padding: 0.7rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .social-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .divider::before { margin-right: 1rem; }
+        .divider::after { margin-left: 1rem; }
+        .theme-toggle-icon {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .bg-card {
+            background-color: var(--card-bg);
+        }
+        .border-border {
+            border-color: var(--border-light);
+        }
+        .text-accent {
+            color: var(--accent);
+        }
+        .text-primary {
+            color: var(--text-primary);
+        }
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .login-card { border-radius: 1.5rem; }
+        }
+        @media (max-width: 400px) {
+            body {
+                padding: 0.75rem;
+            }
+            .login-card {
+                padding: 1.25rem !important;
+                border-radius: 1.25rem;
+            }
+            .login-card h1 {
+                font-size: 1.5rem !important;
+            }
+            .login-card p.text-secondary {
+                font-size: 0.75rem !important;
+                margin-top: 0.25rem !important;
+            }
+            .login-card label {
+                font-size: 0.75rem !important;
+                margin-bottom: 0.25rem !important;
+            }
+            .input-field {
+                padding: 0.65rem 0.85rem !important;
+                font-size: 0.875rem !important;
+                border-radius: 0.75rem !important;
+            }
+            .login-card .flex.items-center.justify-between.mb-6 {
+                margin-bottom: 1rem !important;
+            }
+            .login-card .flex.items-center.justify-between.mb-6 label,
+            .login-card .flex.items-center.justify-between.mb-6 a {
+                font-size: 0.75rem !important;
+            }
+            .btn-primary {
+                padding-top: 0.65rem !important;
+                padding-bottom: 0.65rem !important;
+                font-size: 0.875rem !important;
+            }
+            .divider {
+                margin-top: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+            .social-btn {
+                padding: 0.5rem !important;
+                border-radius: 1rem !important;
+                font-size: 0.75rem !important;
+            }
+            .fixed.top-6 {
+                top: 0.75rem !important;
+            }
+            .fixed.top-6 button {
+                padding: 0.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Theme/RTL Toggles in the Outside Corner -->
+    <div class="fixed top-6 right-6 rtl:right-auto rtl:left-6 flex gap-3 z-50">
+        <button id="theme-toggle-login" class="p-3 bg-card border border-border shadow-md rounded-full hover:bg-accent/10 transition text-primary flex items-center justify-center" aria-label="Dark/Light mode">
+            <i class="fas fa-moon light-icon text-lg"></i>
+            <i class="fas fa-sun dark-icon hidden text-lg"></i>
+        </button>
+        <button id="rtl-toggle-login" class="p-3 bg-card border border-border shadow-md rounded-full hover:bg-accent/10 transition text-primary flex items-center justify-center" aria-label="RTL">
+            <i class="fas fa-globe text-lg"></i>
+        </button>
+    </div>
+
+    <div class="login-card p-6 md:p-7 shadow-xl animate-fade-in">
+        <!-- Logo centered (exact font and color like index.html, no dot) -->
+        <div class="text-center mb-4">
+            <a href="index.html" class="text-2xl font-black tracking-tight"><span class="text-accent">Torque</span></a>
+        </div>
+
+        <!-- Welcome text -->
+        <div class="text-center mb-5">
+            <h1 class="text-2xl md:text-3xl font-extrabold">Welcome back</h1>
+            <p class="text-secondary mt-1 text-xs">Sign in to manage your tires, schedule service & track your vehicle</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+            <div class="mb-3.5">
+                <label class="block text-xs font-semibold mb-1.5 text-primary-text">Email address</label>
+                <input type="email" id="email" class="input-field py-2.5 px-3.5 text-sm" placeholder="hello@torque.com" required autocomplete="email">
+            </div>
+            <div class="mb-3.5">
+                <label class="block text-xs font-semibold mb-1.5 text-primary-text">Password</label>
+                <div class="relative">
+                    <input type="password" id="password" class="input-field py-2.5 px-3.5 pr-10 rtl:pr-3.5 rtl:pl-10 text-sm" placeholder="••••••••" required autocomplete="current-password">
+                    <button type="button" onclick="togglePasswordVisibility('password', this)" class="absolute right-3 rtl:right-auto rtl:left-3 top-1/2 -translate-y-1/2 text-secondary hover:text-accent transition focus:outline-none flex items-center justify-center" aria-label="Toggle password visibility">
+                        <i class="far fa-eye text-sm eye-icon"></i>
+                        <i class="far fa-eye-slash text-sm eye-icon-slash hidden"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex items-center justify-between mb-5">
+                <label class="flex items-center text-xs cursor-pointer select-none text-secondary">
+                    <input type="checkbox" id="remember" class="mr-2 rounded border-border bg-card text-accent focus:ring-accent accent-accent w-4 h-4 cursor-pointer">
+                    Remember me
+                </label>
+                <a href="#" id="forgotPasswordBtn" class="text-xs text-accent hover:underline transition">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn-primary w-full py-2.5 text-sm shadow-md transition-all">Sign in →</button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider my-4">
+            <span>or continue with</span>
+        </div>
+
+        <!-- Social login row (google, apple, facebook) -->
+        <div class="grid grid-cols-3 gap-3 mb-4.5">
+            <div class="social-btn text-xs py-2" id="googleLogin">
+                <i class="fab fa-google text-base"></i>
+                <span class="hidden sm:inline text-xs">Google</span>
+            </div>
+            <div class="social-btn text-xs py-2" id="appleLogin">
+                <i class="fab fa-apple text-base"></i>
+                <span class="hidden sm:inline text-xs">Apple</span>
+            </div>
+            <div class="social-btn text-xs py-2" id="facebookLogin">
+                <i class="fab fa-facebook-f text-base"></i>
+                <span class="hidden sm:inline text-xs">Facebook</span>
+            </div>
+        </div>
+
+        <!-- Sign up link -->
+        <p class="text-center text-secondary text-xs mt-3">
+            Don't have an account? 
+            <a href="signup.html" class="text-accent font-semibold hover:underline">Create account</a>
+        </p>
+        
+        <!-- demo hint (subtle) -->
+        <p class="text-center text-[10px] text-secondary/60 mt-4.5">Demo: any email + password → simulated success</p>
+    </div>
+
+    <!-- toast notification (lightweight) -->
+    <div id="toastMsg" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-5 py-2.5 rounded-full text-sm shadow-xl backdrop-blur-sm z-50 transition-all duration-300 opacity-0 pointer-events-none"></div>
+
+    <script>
+        // ----------------------------- THEME & RTL (consistent with global design) -----------------------------
+        const html = document.documentElement;
+        const applyTheme = (theme) => {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            document.querySelectorAll('.light-icon').forEach(icon => icon.classList.toggle('hidden', theme === 'dark'));
+            document.querySelectorAll('.dark-icon').forEach(icon => icon.classList.toggle('hidden', theme === 'light'));
+        };
+        const initTheme = () => {
+            const stored = localStorage.getItem('theme');
+            const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(stored === 'dark' || (!stored && prefers) ? 'dark' : 'light');
+        };
+        const toggleTheme = () => {
+            const cur = html.getAttribute('data-theme');
+            applyTheme(cur === 'light' ? 'dark' : 'light');
+        };
+        const themeBtn = document.getElementById('theme-toggle-login');
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+        
+        // RTL toggle
+        const toggleRtl = () => {
+            const isRtl = html.getAttribute('dir') === 'rtl';
+            html.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
+            localStorage.setItem('dir', isRtl ? 'ltr' : 'rtl');
+        };
+        const rtlBtn = document.getElementById('rtl-toggle-login');
+        if (rtlBtn) rtlBtn.addEventListener('click', toggleRtl);
+        const savedDir = localStorage.getItem('dir') === 'rtl' ? 'rtl' : 'ltr';
+        html.setAttribute('dir', savedDir);
+        initTheme();
+
+        // ---------- toast helper ----------
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toastMsg');
+            toast.textContent = message;
+            toast.style.background = isError ? '#C13C0F' : '#1E4A6B';
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2800);
+        }
+
+        // ---------- login handler (mock authentication) ----------
+        function handleLogin() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            if (!email) {
+                showToast('Please enter your email address', true);
+                return;
+            }
+            if (!password) {
+                showToast('Password cannot be empty', true);
+                return;
+            }
+            // simple email validation
+            if (!email.includes('@') || !email.includes('.')) {
+                showToast('Enter a valid email address', true);
+                return;
+            }
+            // Simulate success — in real project you'd call API
+            showToast(`Welcome back! Redirecting to dashboard...`, false);
+            setTimeout(() => {
+                // redirect to dashboard (or home)
+                window.location.href = "user.html";
+            }, 1200);
+        }
+
+        // Forgot password popup / demo behavior
+        document.getElementById('forgotPasswordBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('📧 Password reset link sent to your registered email (demo mode)', false);
+        });
+
+        // Social login simulations (each triggers demo)
+        const socialDemo = (provider) => {
+            showToast(`🔐 ${provider} sign-in demo — full integration available`, false);
+            setTimeout(() => {
+                window.location.href = "dashboard.html";
+            }, 1000);
+        };
+        document.getElementById('googleLogin')?.addEventListener('click', () => socialDemo('Google'));
+        document.getElementById('appleLogin')?.addEventListener('click', () => socialDemo('Apple'));
+        document.getElementById('facebookLogin')?.addEventListener('click', () => socialDemo('Facebook'));
+
+        // ---------- toggle password visibility helper ----------
+        function togglePasswordVisibility(inputId, button) {
+            const input = document.getElementById(inputId);
+            const eyeIcon = button.querySelector('.eye-icon');
+            const eyeSlashIcon = button.querySelector('.eye-icon-slash');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                eyeIcon.classList.add('hidden');
+                eyeSlashIcon.classList.remove('hidden');
+            } else {
+                input.type = 'password';
+                eyeIcon.classList.remove('hidden');
+                eyeSlashIcon.classList.add('hidden');
+            }
+        }
+
+        // Additional: enter key on form
+        const form = document.getElementById('loginForm');
+        form.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+    </script>
+</body>
+</html>
