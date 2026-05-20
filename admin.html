@@ -139,6 +139,113 @@
         @keyframes pulse { 70% { box-shadow: 0 0 0 6px rgba(16,185,129,0); } }
         .custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
     </style>
+    <style id="typography-alignment">
+        /* Typography Alignment & Consistency Overrides */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500 !important;
+        }
+        /* Keep paragraph weights 400-500 */
+        p:not(.font-medium), div.text-secondary {
+            font-weight: 400 !important;
+        }
+        /* Ensure proper text alignment inside cards */
+        .tire-card, .bg-card, .card {
+            text-align: left !important;
+        }
+        .text-center .tire-card, .text-center .bg-card {
+            text-align: left !important;
+        }
+        /* Reduce overly wide paragraphs inside containers for readability */
+        .container p, section > div > p.text-secondary {
+            max-width: 65ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tire-card p, .bg-card p, .card p, .text-left p {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: none !important;
+        }
+    </style>
+    <style id="cta-improvements">
+        /* Primary CTA Highlights */
+        .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(224, 90, 42, 0.4);
+            color: #ffffff !important;
+        }
+        html[data-theme='dark'] .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(249, 115, 22, 0.3);
+            color: #0f172a !important; /* High contrast in dark mode */
+            font-weight: 600 !important;
+        }
+        
+        /* Hover Color Consistency & Contrast */
+        .btn-primary:hover {
+            background-color: var(--accent-dark) !important;
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 16px 0 rgba(224, 90, 42, 0.5);
+        }
+        html[data-theme='dark'] .btn-primary:hover {
+            box-shadow: 0 6px 16px 0 rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-outline {
+            color: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            color: #0f172a !important; /* High contrast in dark mode */
+        }
+
+        /* Align CTA buttons consistently inside cards/grids */
+        .tire-card, .dashboard-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .tire-card > div:last-child, .dashboard-card > div:last-child, .dashboard-card > button:last-child {
+            margin-top: auto;
+        }
+    </style>
+    <style id="image-improvements">
+        /* Prevent image distortion globally */
+        img:not([src*="fav.png"]):not(.object-contain) {
+            object-fit: cover !important;
+        }
+        
+        /* Ensure proper background overlays for readability (apply to containers if needed) */
+        .bg-overlay {
+            position: relative;
+        }
+        .bg-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bg-overlay > * {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style id="responsive-fixes">
+        /* Guarantee text wrapping on small screens */
+        body {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: break-all;
+            word-break: break-word;
+        }
+    </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen w-full">
 
@@ -150,7 +257,7 @@
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                 </button>
                 <div class="flex items-center gap-2">
-                    <a href="index.html" class="text-2xl font-black tracking-tight"><span class="text-accent">Torque</span><span class="text-secondary">Admin</span></a>
+                    <a href="index.html" class="text-2xl font-medium tracking-tight"><span class="text-accent">Torque</span><span class="text-secondary">Admin</span></a>
                 </div>
             </div>
             <div class="flex items-center gap-3 sm:gap-4">
@@ -159,8 +266,8 @@
                 </button>
                 <button id="lang-toggle" class="p-2 rounded-full hover:bg-hover-bg transition"><i class="fas fa-globe text-primary"></i></button>
                 <div class="relative flex items-center gap-2 pl-2 border-l border-border">
-                    <div class="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold"><i class="fas fa-user-shield"></i></div>
-                    <div class="hidden sm:block text-sm"><p class="font-semibold">Operations</p><p class="text-xs text-secondary">Super Admin</p></div>
+                    <div class="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center text-accent font-medium"><i class="fas fa-user-shield"></i></div>
+                    <div class="hidden sm:block text-sm"><p class="font-medium">Operations</p><p class="text-xs text-secondary">Super Admin</p></div>
                 </div>
             </div>
         </div>
@@ -174,27 +281,27 @@
             <aside id="sidebar-container" class="fixed lg:static top-0 left-0 h-full lg:h-auto w-80 z-[60] lg:z-10 transform lg:translate-x-0 transition-transform duration-300 bg-sidebar lg:bg-transparent lg:flex-shrink-0 shadow-xl lg:shadow-none">
                 <div class="dashboard-card p-5 lg:sticky lg:top-24 bg-sidebar h-full lg:h-auto border-r lg:border border-border lg:rounded-2xl rounded-none overflow-y-auto">
                     <div class="flex lg:hidden justify-between items-center mb-6 px-2">
-                        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center"><i class="fas fa-chart-line text-white text-xs"></i></div><span class="text-xs font-bold uppercase">Admin Menu</span></div>
+                        <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center"><i class="fas fa-chart-line text-white text-xs"></i></div><span class="text-xs font-medium uppercase">Admin Menu</span></div>
                         <button id="close-sidebar" class="p-2 hover:bg-hover-bg rounded-lg"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="flex items-center gap-3 pb-5 mb-4 border-b border-border">
                         <div class="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xl"><i class="fas fa-crown"></i></div>
-                        <div><p class="font-bold text-primary">Torque Control</p><p class="text-[11px] text-secondary flex items-center gap-1"><span class="pulse-dot inline-block"></span> Live Ops</p></div>
+                        <div><p class="font-medium text-primary">Torque Control</p><p class="text-[11px] text-secondary flex items-center gap-1"><span class="pulse-dot inline-block"></span> Live Ops</p></div>
                     </div>
                     <nav class="flex flex-col gap-1">
-                        <p class="text-[10px] uppercase tracking-wider text-secondary font-bold mt-2 mb-2 px-2">Core</p>
+                        <p class="text-[10px] uppercase tracking-wider text-secondary font-medium mt-2 mb-2 px-2">Core</p>
                         <a href="#" data-section="dashboard" class="sidebar-link active"><i class="fas fa-tachometer-alt w-5"></i><span>Analytics Overview</span></a>
                         <a href="#" data-section="orders" class="sidebar-link"><i class="fas fa-clipboard-list"></i><span>Service Orders</span></a>
                         <a href="#" data-section="inventory" class="sidebar-link"><i class="fas fa-warehouse"></i><span>Tire Inventory</span></a>
                         <a href="#" data-section="tech-track" class="sidebar-link"><i class="fas fa-truck"></i><span>Technician Fleet</span></a>
-                        <p class="text-[10px] uppercase tracking-wider text-secondary font-bold mt-4 mb-2 px-2">Management</p>
+                        <p class="text-[10px] uppercase tracking-wider text-secondary font-medium mt-4 mb-2 px-2">Management</p>
                         <a href="#" data-section="customers" class="sidebar-link"><i class="fas fa-users"></i><span>Customer Profiles</span></a>
                         <a href="#" data-section="schedules" class="sidebar-link"><i class="fas fa-calendar-week"></i><span>Shift Scheduling</span></a>
                         <a href="#" data-section="reports" class="sidebar-link"><i class="fas fa-chart-pie"></i><span>Reports & Revenue</span></a>
                         <a href="#" data-section="settings" class="sidebar-link"><i class="fas fa-cog"></i><span>System Settings</span></a>
                         <a href="#" data-section="logout" class="sidebar-link logout mt-2 text-red-500"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
                     </nav>
-                    <div class="mt-8 pt-4 border-t border-border text-[11px] text-secondary"><div class="flex justify-between"><span>Platform Status</span><span class="text-accent font-bold">Operational</span></div><div class="flex justify-between mt-1"><span>Active Techs</span><span class="font-medium">7 / 8 online</span></div></div>
+                    <div class="mt-8 pt-4 border-t border-border text-[11px] text-secondary"><div class="flex justify-between"><span>Platform Status</span><span class="text-accent font-medium">Operational</span></div><div class="flex justify-between mt-1"><span>Active Techs</span><span class="font-medium">7 / 8 online</span></div></div>
                 </div>
             </aside>
 
@@ -203,62 +310,62 @@
                 <!-- DASHBOARD ANALYTICS -->
                 <div id="dashboard" class="admin-section">
                     <div class="mb-6 reveal active">
-                        <h1 class="text-3xl font-extrabold">Welcome, <span class="text-accent">Operations</span>! 👋</h1>
+                        <h1 class="text-3xl font-medium">Welcome, <span class="text-accent">Operations</span>! 👋</h1>
                         <p class="text-secondary mt-1">Here's your system overview for today.</p>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal active">
-                        <div class="stat-card p-5"><div class="flex justify-between"><i class="fas fa-calendar-day text-2xl text-accent"></i><span class="text-xs bg-accent/10 px-2 py-1 rounded-full">+18%</span></div><p class="text-2xl font-black mt-3">142</p><p class="text-sm font-medium">Today's Services</p><p class="text-xs text-secondary">vs 120 yesterday</p></div>
-                        <div class="stat-card p-5"><i class="fas fa-dollar-sign text-2xl text-accent"></i><p class="text-2xl font-black mt-3">$12.4k</p><p class="text-sm font-medium">Revenue (MTD)</p><p class="text-xs text-secondary">↑ 9.2%</p></div>
-                        <div class="stat-card p-5"><i class="fas fa-tire text-2xl text-accent"></i><p class="text-2xl font-black mt-3">387</p><p class="text-sm font-medium">Tires in stock</p><p class="text-xs text-secondary">17 low stock alerts</p></div>
-                        <div class="stat-card p-5"><i class="fas fa-star text-2xl text-accent"></i><p class="text-2xl font-black mt-3">4.96</p><p class="text-sm font-medium">Avg. Driver Rating</p><p class="text-xs text-secondary">1,280 reviews</p></div>
+                        <div class="stat-card p-5"><div class="flex justify-between"><i class="fas fa-calendar-day text-2xl text-accent"></i><span class="text-xs bg-accent/10 px-2 py-1 rounded-full">+18%</span></div><p class="text-2xl font-medium mt-3">142</p><p class="text-sm font-medium">Today's Services</p><p class="text-xs text-secondary">vs 120 yesterday</p></div>
+                        <div class="stat-card p-5"><i class="fas fa-dollar-sign text-2xl text-accent"></i><p class="text-2xl font-medium mt-3">$12.4k</p><p class="text-sm font-medium">Revenue (MTD)</p><p class="text-xs text-secondary">↑ 9.2%</p></div>
+                        <div class="stat-card p-5"><i class="fas fa-tire text-2xl text-accent"></i><p class="text-2xl font-medium mt-3">387</p><p class="text-sm font-medium">Tires in stock</p><p class="text-xs text-secondary">17 low stock alerts</p></div>
+                        <div class="stat-card p-5"><i class="fas fa-star text-2xl text-accent"></i><p class="text-2xl font-medium mt-3">4.96</p><p class="text-sm font-medium">Avg. Driver Rating</p><p class="text-xs text-secondary">1,280 reviews</p></div>
                     </div>
-                    <div class="dashboard-card p-5 mt-6 reveal"><div class="flex justify-between items-center"><h3 class="font-bold text-lg"><i class="fas fa-chart-line text-accent"></i> Service Volume (weekly)</h3><select class="text-sm bg-card border border-border rounded-lg p-1"><option>This week</option><option>Last week</option></select></div><div class="h-32 flex items-end justify-between gap-2 mt-5"><div class="w-full bg-accent/20 rounded-lg h-[70%] relative"><div class="absolute bottom-0 w-full bg-accent h-[70%] rounded-t-lg"></div><span class="text-[10px] absolute -bottom-5 left-1/2 -translate-x-1/2">Mon</span></div><div class="w-full bg-accent/20 rounded-lg h-[85%]"><div class="bg-accent h-[85%] rounded-t-lg"></div><span class="text-[10px] absolute -bottom-5 left-1/2 -translate-x-1/2">Tue</span></div><div class="w-full bg-accent/20 rounded-lg h-[92%]"><div class="bg-accent h-[92%] rounded-t-lg"></div><span class="text-[10px] absolute -bottom-5">Wed</span></div><div class="w-full bg-accent/20 rounded-lg h-[78%]"><div class="bg-accent h-[78%] rounded-t-lg"></div><span class="text-[10px]">Thu</span></div><div class="w-full bg-accent/20 rounded-lg h-[63%]"><div class="bg-accent h-[63%] rounded-t-lg"></div><span class="text-[10px]">Fri</span></div></div></div>
+                    <div class="dashboard-card p-5 mt-6 reveal"><div class="flex justify-between items-center"><h3 class="font-medium text-lg"><i class="fas fa-chart-line text-accent"></i> Service Volume (weekly)</h3><select class="text-sm bg-card border border-border rounded-lg p-1"><option>This week</option><option>Last week</option></select></div><div class="h-32 flex items-end justify-between gap-2 mt-5"><div class="w-full bg-accent/20 rounded-lg h-[70%] relative"><div class="absolute bottom-0 w-full bg-accent h-[70%] rounded-t-lg"></div><span class="text-[10px] absolute -bottom-5 left-1/2 -translate-x-1/2">Mon</span></div><div class="w-full bg-accent/20 rounded-lg h-[85%]"><div class="bg-accent h-[85%] rounded-t-lg"></div><span class="text-[10px] absolute -bottom-5 left-1/2 -translate-x-1/2">Tue</span></div><div class="w-full bg-accent/20 rounded-lg h-[92%]"><div class="bg-accent h-[92%] rounded-t-lg"></div><span class="text-[10px] absolute -bottom-5">Wed</span></div><div class="w-full bg-accent/20 rounded-lg h-[78%]"><div class="bg-accent h-[78%] rounded-t-lg"></div><span class="text-[10px]">Thu</span></div><div class="w-full bg-accent/20 rounded-lg h-[63%]"><div class="bg-accent h-[63%] rounded-t-lg"></div><span class="text-[10px]">Fri</span></div></div></div>
                 </div>
 
                 <!-- SERVICE ORDERS (detailed) -->
                 <div id="orders" class="admin-section hidden">
                     <div class="dashboard-card p-5 sm:p-6">
-                        <div class="flex justify-between items-center flex-wrap gap-3"><h2 class="text-xl font-bold"><i class="fas fa-truck-fast text-accent"></i> Active Service Orders</h2><button class="btn-primary text-sm px-4 py-2">Export CSV</button></div>
+                        <div class="flex justify-between items-center flex-wrap gap-3"><h2 class="text-xl font-medium"><i class="fas fa-truck-fast text-accent"></i> Active Service Orders</h2><button class="btn-primary text-sm px-4 py-2">Export CSV</button></div>
                         <div class="overflow-x-auto mt-5 custom-scrollbar"><table class="w-full text-sm data-table"><thead><tr class="border-b border-border"><th>Order ID</th><th>Customer</th><th>Service</th><th>Tech</th><th>Status</th><th>ETA</th><th>Actions</th></tr></thead><tbody><tr><td class="font-mono">#TQ-4281</td><td>Alex Rivera</td><td>Full installation (4 tires)</td><td>Elena M.</td><td><span class="status-badge bg-yellow-100 text-yellow-700">En Route</span></td><td>12 min</td><td><i class="fas fa-eye text-accent cursor-pointer"></i></td></tr><tr><td>#TQ-4290</td><td>Sarah Chen</td><td>Flat repair</td><td>Marcus K.</td><td><span class="status-badge bg-blue-100 text-blue-700">Scheduled</span></td><td>45 min</td><td><i class="fas fa-edit text-accent"></i></td></tr><tr><td>#TQ-4275</td><td>James Wu</td><td>Rotation + balance</td><td>Lisa R.</td><td><span class="status-badge bg-green-100 text-green-700">Completed</span></td><td>—</td><td><i class="fas fa-receipt"></i></td></tr></tbody></table></div>
                     </div>
                 </div>
 
                 <!-- TIRE INVENTORY admin -->
                 <div id="inventory" class="admin-section hidden">
-                    <div class="dashboard-card p-6"><h2 class="text-xl font-bold"><i class="fas fa-boxes text-accent"></i> Master Tire Inventory</h2><div class="overflow-x-auto"><table class="w-full text-sm data-table"><thead><tr><th>Model</th><th>Stock</th><th>Price</th><th>Safety Rating</th><th>Reorder</th></tr></thead><tbody><tr><td>Pilot Sport 5</td><td>24 units</td><td>$189</td><td>A+</td><td><button class="text-accent text-xs">Reorder</button></td></tr><tr><td>CrossClimate 2</td><td>12 units</td><td>$212</td><td>A (Snow)</td><td><button class="text-accent text-xs">Reorder</button></td></tr><tr><td>EcoContact 6</td><td>38 units</td><td>$165</td><td>B+</td><td><button class="text-accent text-xs">Restock</button></td></tr></tbody></table></div><button class="mt-5 btn-outline py-2 px-5 text-sm">+ Add New SKU</button></div>
+                    <div class="dashboard-card p-6"><h2 class="text-xl font-medium"><i class="fas fa-boxes text-accent"></i> Master Tire Inventory</h2><div class="overflow-x-auto"><table class="w-full text-sm data-table"><thead><tr><th>Model</th><th>Stock</th><th>Price</th><th>Safety Rating</th><th>Reorder</th></tr></thead><tbody><tr><td>Pilot Sport 5</td><td>24 units</td><td>$189</td><td>A+</td><td><button class="text-accent text-xs">Reorder</button></td></tr><tr><td>CrossClimate 2</td><td>12 units</td><td>$212</td><td>A (Snow)</td><td><button class="text-accent text-xs">Reorder</button></td></tr><tr><td>EcoContact 6</td><td>38 units</td><td>$165</td><td>B+</td><td><button class="text-accent text-xs">Restock</button></td></tr></tbody></table></div><button class="mt-5 btn-outline py-2 px-5 text-sm">+ Add New SKU</button></div>
                 </div>
 
                 <!-- TECHNICIAN FLEET TRACKING -->
                 <div id="tech-track" class="admin-section hidden">
-                    <div class="dashboard-card p-6"><h2 class="text-xl font-bold"><i class="fas fa-chalkboard-user text-accent"></i> Technician Live Status</h2><div class="grid md:grid-cols-2 gap-4 mt-5"><div class="flex items-center gap-4 border border-border p-3 rounded-xl"><div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center"><i class="fas fa-user-astronaut text-accent"></i></div><div><p class="font-bold">Elena M. <span class="text-[10px] bg-green-100 text-green-700 px-2 rounded-full">Active</span></p><p class="text-xs text-secondary">Vehicle #TQ-204 · ETA 12min</p></div><div class="ml-auto"><i class="fas fa-map-marker-alt text-accent"></i></div></div><div class="flex items-center gap-4 border border-border p-3 rounded-xl"><div><i class="fas fa-user-cog text-accent text-xl"></i></div><div><p class="font-bold">Marcus K. <span class="text-[10px] bg-yellow-100 px-2 rounded-full">Break</span></p><p class="text-xs text-secondary">Back at 2:30 PM</p></div></div></div><div class="mt-6 bg-accent/5 p-4 rounded-xl"><i class="fas fa-charging-station"></i> Fleet utilization: 87% · 7/8 vans active</div></div>
+                    <div class="dashboard-card p-6"><h2 class="text-xl font-medium"><i class="fas fa-chalkboard-user text-accent"></i> Technician Live Status</h2><div class="grid md:grid-cols-2 gap-4 mt-5"><div class="flex items-center gap-4 border border-border p-3 rounded-xl"><div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center"><i class="fas fa-user-astronaut text-accent"></i></div><div><p class="font-medium">Elena M. <span class="text-[10px] bg-green-100 text-green-700 px-2 rounded-full">Active</span></p><p class="text-xs text-secondary">Vehicle #TQ-204 · ETA 12min</p></div><div class="ml-auto"><i class="fas fa-map-marker-alt text-accent"></i></div></div><div class="flex items-center gap-4 border border-border p-3 rounded-xl"><div><i class="fas fa-user-cog text-accent text-xl"></i></div><div><p class="font-medium">Marcus K. <span class="text-[10px] bg-yellow-100 px-2 rounded-full">Break</span></p><p class="text-xs text-secondary">Back at 2:30 PM</p></div></div></div><div class="mt-6 bg-accent/5 p-4 rounded-xl"><i class="fas fa-charging-station"></i> Fleet utilization: 87% · 7/8 vans active</div></div>
                 </div>
 
                 <!-- CUSTOMER PROFILES -->
                 <div id="customers" class="admin-section hidden">
-                    <div class="dashboard-card p-6"><h2 class="text-xl font-bold"><i class="fas fa-address-card text-accent"></i> Customer Directory</h2><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b"><th>Name</th><th>Vehicle</th><th>Total Services</th><th>Lifetime Value</th><th>Status</th></tr></thead><tbody><tr><td class="py-2">Alex Rivera</td><td>Tesla Model 3</td><td>4</td><td>$845</td><td><span class="text-green-600">● Premium</span></td></tr><tr><td>Sarah Chen</td><td>Honda CR-V</td><td>2</td><td>$210</td><td>Standard</td></tr></tbody></table></div><input type="text" placeholder="Search customers..." class="mt-5 w-full p-2 border border-border rounded-xl bg-card"></div>
+                    <div class="dashboard-card p-6"><h2 class="text-xl font-medium"><i class="fas fa-address-card text-accent"></i> Customer Directory</h2><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b"><th>Name</th><th>Vehicle</th><th>Total Services</th><th>Lifetime Value</th><th>Status</th></tr></thead><tbody><tr><td class="py-2">Alex Rivera</td><td>Tesla Model 3</td><td>4</td><td>$845</td><td><span class="text-green-600">● Premium</span></td></tr><tr><td>Sarah Chen</td><td>Honda CR-V</td><td>2</td><td>$210</td><td>Standard</td></tr></tbody></table></div><input type="text" placeholder="Search customers..." class="mt-5 w-full p-2 border border-border rounded-xl bg-card"></div>
                 </div>
 
                 <!-- SHIFT SCHEDULING -->
                 <div id="schedules" class="admin-section hidden">
-                    <div class="dashboard-card p-6"><h2 class="text-xl font-bold"><i class="fas fa-calendar-alt text-accent"></i> Weekly Shift Roster</h2><div class="grid md:grid-cols-3 gap-4 mt-4"><div class="border border-border p-3 rounded-xl"><p class="font-bold">Morning (6am-2pm)</p><p>Elena, Marcus, Lisa</p><p class="text-xs text-secondary mt-2">Coverage: 3 techs</p></div><div class="border border-border p-3 rounded-xl"><p class="font-bold">Afternoon (2pm-10pm)</p><p>David, Omar, Sophia</p><p class="text-xs text-secondary">+1 on-call</p></div><div class="border border-border p-3 rounded-xl"><p class="font-bold">Night (10pm-6am)</p><p>Emergency only: 2 techs</p></div></div><button class="mt-5 btn-primary py-2 px-5 text-sm">Manage Schedule</button></div>
+                    <div class="dashboard-card p-6"><h2 class="text-xl font-medium"><i class="fas fa-calendar-alt text-accent"></i> Weekly Shift Roster</h2><div class="grid md:grid-cols-3 gap-4 mt-4"><div class="border border-border p-3 rounded-xl"><p class="font-medium">Morning (6am-2pm)</p><p>Elena, Marcus, Lisa</p><p class="text-xs text-secondary mt-2">Coverage: 3 techs</p></div><div class="border border-border p-3 rounded-xl"><p class="font-medium">Afternoon (2pm-10pm)</p><p>David, Omar, Sophia</p><p class="text-xs text-secondary">+1 on-call</p></div><div class="border border-border p-3 rounded-xl"><p class="font-medium">Night (10pm-6am)</p><p>Emergency only: 2 techs</p></div></div><button class="mt-5 btn-primary py-2 px-5 text-sm">Manage Schedule</button></div>
                 </div>
 
                 <!-- REPORTS & REVENUE -->
                 <div id="reports" class="admin-section hidden">
-                    <div class="dashboard-card p-6"><h2 class="text-xl font-bold"><i class="fas fa-file-invoice-dollar text-accent"></i> Financial Reports</h2><div class="flex flex-wrap gap-4 mt-4"><div class="bg-hover-bg p-4 rounded-2xl flex-1"><p class="text-xs uppercase">Weekly revenue</p><p class="text-2xl font-black">$18,340</p><span class="text-accent text-sm">↑ +12%</span></div><div class="bg-hover-bg p-4 rounded-2xl flex-1"><p class="text-xs uppercase">Avg ticket</p><p class="text-2xl font-black">$129</p></div></div><div class="mt-5"><button class="btn-outline w-full py-2">Download Full Report (PDF)</button></div></div>
+                    <div class="dashboard-card p-6"><h2 class="text-xl font-medium"><i class="fas fa-file-invoice-dollar text-accent"></i> Financial Reports</h2><div class="flex flex-wrap gap-4 mt-4"><div class="bg-hover-bg p-4 rounded-2xl flex-1"><p class="text-xs uppercase">Weekly revenue</p><p class="text-2xl font-medium">$18,340</p><span class="text-accent text-sm">↑ +12%</span></div><div class="bg-hover-bg p-4 rounded-2xl flex-1"><p class="text-xs uppercase">Avg ticket</p><p class="text-2xl font-medium">$129</p></div></div><div class="mt-5"><button class="btn-outline w-full py-2">Download Full Report (PDF)</button></div></div>
                 </div>
 
                 <!-- SYSTEM SETTINGS -->
                 <div id="settings" class="admin-section hidden">
-                    <div class="dashboard-card p-6"><h2 class="text-xl font-bold"><i class="fas fa-sliders-h text-accent"></i> Platform Configuration</h2><div class="space-y-4"><div class="flex justify-between border-b pb-3"><span>Maintenance Mode</span><div class="w-10 h-5 bg-accent rounded-full p-0.5 cursor-pointer"><div class="w-4 h-4 bg-white rounded-full ml-auto"></div></div></div><div class="flex justify-between border-b pb-3"><span>Enable SMS Dispatch</span><div class="w-10 h-5 bg-accent rounded-full p-0.5"><div class="w-4 h-4 bg-white rounded-full ml-auto"></div></div></div><div class="flex justify-between"><span>Price Auto-Update</span><div class="w-10 h-5 bg-border rounded-full p-0.5"><div class="w-4 h-4 bg-white rounded-full"></div></div></div><button class="btn-primary px-6 py-2 mt-6 text-sm">Save Changes</button></div></div>
+                    <div class="dashboard-card p-6"><h2 class="text-xl font-medium"><i class="fas fa-sliders-h text-accent"></i> Platform Configuration</h2><div class="space-y-4"><div class="flex justify-between border-b pb-3"><span>Maintenance Mode</span><div class="w-10 h-5 bg-accent rounded-full p-0.5 cursor-pointer"><div class="w-4 h-4 bg-white rounded-full ml-auto"></div></div></div><div class="flex justify-between border-b pb-3"><span>Enable SMS Dispatch</span><div class="w-10 h-5 bg-accent rounded-full p-0.5"><div class="w-4 h-4 bg-white rounded-full ml-auto"></div></div></div><div class="flex justify-between"><span>Price Auto-Update</span><div class="w-10 h-5 bg-border rounded-full p-0.5"><div class="w-4 h-4 bg-white rounded-full"></div></div></div><button class="btn-primary px-6 py-2 mt-6 text-sm">Save Changes</button></div></div>
                 </div>
 
                 <!-- LOGOUT ADMIN -->
                 <div id="logout" class="admin-section hidden">
-                    <div class="dashboard-card p-10 text-center max-w-md mx-auto"><i class="fas fa-lock text-5xl text-accent"></i><h2 class="text-2xl font-bold mt-3">End Admin Session</h2><p class="text-secondary">All analytics data is saved.</p><div class="mt-6 flex gap-3 justify-center"><button onclick="window.location.href='login.html'" class="bg-red-500 text-white px-6 py-2 rounded-full">Confirm Logout</button><button onclick="activateSection('dashboard')" class="border-border border px-5 py-2 rounded-full">Cancel</button></div></div>
+                    <div class="dashboard-card p-10 text-center max-w-md mx-auto"><i class="fas fa-lock text-5xl text-accent"></i><h2 class="text-2xl font-medium mt-3">End Admin Session</h2><p class="text-secondary">All analytics data is saved.</p><div class="mt-6 flex gap-3 justify-center"><button onclick="window.location.href='login.html'" class="bg-red-500 text-white px-6 py-2 rounded-full">Confirm Logout</button><button onclick="activateSection('dashboard')" class="border-border border px-5 py-2 rounded-full">Cancel</button></div></div>
                 </div>
 
-                <footer class="mt-12 text-center text-[10px] text-secondary border-t border-border pt-8 pb-12"><p class="uppercase tracking-widest font-bold">© 2026 Torque Admin — Mobile Tire & Flat Repair Command Center</p><div class="flex justify-center gap-5 mt-3"><span class="hover:text-accent cursor-pointer">Audit Logs</span><span class="hover:text-accent cursor-pointer">Staff API</span><span class="hover:text-accent cursor-pointer">Compliance</span></div></footer>
+                <footer class="mt-12 text-center text-[10px] text-secondary border-t border-border pt-8 pb-12"><p class="uppercase tracking-widest font-medium">© 2026 Torque Admin — Mobile Tire & Flat Repair Command Center</p><div class="flex justify-center gap-5 mt-3"><span class="hover:text-accent cursor-pointer">Audit Logs</span><span class="hover:text-accent cursor-pointer">Staff API</span><span class="hover:text-accent cursor-pointer">Compliance</span></div></footer>
             </div>
         </div>
     </main>
@@ -300,3 +407,10 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+

@@ -307,6 +307,113 @@
             right: 0;
         }
     </style>
+    <style id="typography-alignment">
+        /* Typography Alignment & Consistency Overrides */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500 !important;
+        }
+        /* Keep paragraph weights 400-500 */
+        p:not(.font-medium), div.text-secondary {
+            font-weight: 400 !important;
+        }
+        /* Ensure proper text alignment inside cards */
+        .tire-card, .bg-card, .card {
+            text-align: left !important;
+        }
+        .text-center .tire-card, .text-center .bg-card {
+            text-align: left !important;
+        }
+        /* Reduce overly wide paragraphs inside containers for readability */
+        .container p, section > div > p.text-secondary {
+            max-width: 65ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tire-card p, .bg-card p, .card p, .text-left p {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: none !important;
+        }
+    </style>
+    <style id="cta-improvements">
+        /* Primary CTA Highlights */
+        .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(224, 90, 42, 0.4);
+            color: #ffffff !important;
+        }
+        html[data-theme='dark'] .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(249, 115, 22, 0.3);
+            color: #0f172a !important; /* High contrast in dark mode */
+            font-weight: 600 !important;
+        }
+        
+        /* Hover Color Consistency & Contrast */
+        .btn-primary:hover {
+            background-color: var(--accent-dark) !important;
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 16px 0 rgba(224, 90, 42, 0.5);
+        }
+        html[data-theme='dark'] .btn-primary:hover {
+            box-shadow: 0 6px 16px 0 rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-outline {
+            color: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            color: #0f172a !important; /* High contrast in dark mode */
+        }
+
+        /* Align CTA buttons consistently inside cards/grids */
+        .tire-card, .dashboard-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .tire-card > div:last-child, .dashboard-card > div:last-child, .dashboard-card > button:last-child {
+            margin-top: auto;
+        }
+    </style>
+    <style id="image-improvements">
+        /* Prevent image distortion globally */
+        img:not([src*="fav.png"]):not(.object-contain) {
+            object-fit: cover !important;
+        }
+        
+        /* Ensure proper background overlays for readability (apply to containers if needed) */
+        .bg-overlay {
+            position: relative;
+        }
+        .bg-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bg-overlay > * {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style id="responsive-fixes">
+        /* Guarantee text wrapping on small screens */
+        body {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: break-all;
+            word-break: break-word;
+        }
+    </style>
 </head>
 
 <body class="antialiased">
@@ -315,7 +422,7 @@
     <header class="fixed top-0 left-0 w-full z-50 pt-3" id="main-header">
         <nav
             class="max-w-7xl mx-auto px-5 py-3 rounded-2xl flex items-center justify-between backdrop-blur-sm border border-border">
-            <a href="index.html" class="text-2xl font-black tracking-tight"><span class="text-accent">Torque</span></a>
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
             <!-- Desktop Center Nav -->
             <div class="hidden xl:flex items-center space-x-8 rtl:space-x-reverse text-sm font-medium">
                 <div class="dropdown-wrapper">
@@ -324,7 +431,7 @@
                             class="fas fa-chevron-down text-[10px] leading-none inline-block translate-y-[2.5px]"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="index.html" class="text-accent font-semibold">Home 1</a>
+                        <a href="index.html" class="text-accent font-medium">Home 1</a>
                         <a href="home2.html">Home 2</a>
                     </div>
                 </div>
@@ -370,25 +477,24 @@
         <div id="drawer-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition pointer-events-none"></div>
         <div id="drawer-panel"
             class="absolute top-0 left-0 w-80 h-full bg-card shadow-2xl transform -translate-x-full transition-transform duration-300 p-6 overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-border pb-4"><span
-                    class="text-2xl font-black text-accent">Torque</span><button id="drawer-close"><i
+            <div class="flex justify-between items-center border-b border-border pb-4"><a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a><button id="drawer-close"><i
                         class="fas fa-times text-xl"></i></button></div>
             <nav class="flex flex-col gap-3 mt-6">
                 <div><button id="mobile-home-toggle"
-                        class="flex w-full justify-between items-center py-2 font-semibold text-accent">Home <i
+                        class="flex w-full justify-between items-center py-2 font-medium text-accent">Home <i
                             class="fas fa-chevron-down text-xs"></i></button>
                     <div id="mobile-home-submenu" class="pl-4 flex flex-col gap-2 mt-1 border-l border-border">
-                        <a href="index.html" class="text-accent font-semibold">Home 1</a><a href="home2.html">Home 2</a>
+                        <a href="index.html" class="text-accent font-medium">Home 1</a><a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="py-2 font-semibold">Services</a>
-                <a href="tire.html" class="py-2 font-semibold">Tire Installation</a>
-                <a href="flatrepair.html" class="py-2 font-semibold">Flat Repair</a>
-                <a href="pricing.html" class="py-2 font-semibold">Pricing</a>
-                <a href="about.html" class="py-2 font-semibold">About Us</a>
-                <a href="contact.html" class="py-2 font-semibold">Contact</a>
+                <a href="service.html" class="py-2 font-medium">Services</a>
+                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
+                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
+                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
+                <a href="about.html" class="py-2 font-medium">About Us</a>
+                <a href="contact.html" class="py-2 font-medium">Contact</a>
                 <div><button id="mobile-dashboard-toggle"
-                        class="flex w-full justify-between items-center py-2 font-semibold">Dashboard <i
+                        class="flex w-full justify-between items-center py-2 font-medium">Dashboard <i
                             class="fas fa-chevron-down text-xs"></i></button>
                     <div id="mobile-dashboard-submenu"
                         class="hidden pl-4 flex flex-col gap-2 mt-1 border-l border-border">
@@ -414,13 +520,13 @@
 <section class="relative overflow-hidden pb-12 md:pb-20">
     <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
         <div class="reveal">
-            <span class="inline-block bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-semibold mb-4">
+            <span class="inline-block bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-medium mb-4">
                 <i class="fas fa-flag-checkered mr-1"></i> OUR STORY • SINCE 2018
             </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+            <h1 class="text-4xl md:text-5xl font-medium leading-tight">
                 Driven by <span class="text-accent">Excellence</span>, Powered by Passion
             </h1>
-            <p class="text-secondary text-lg mt-4">We started Torque with one mission: to eliminate the hassle of traditional tire shops. Mobile service, transparent pricing, and certified experts — bringing the garage to your doorstep.</p>
+            <p class="text-secondary text-lg mt-4 max-w-2xl mx-auto">We started Torque with one mission: to eliminate the hassle of traditional tire shops. Mobile service, transparent pricing, and certified experts — bringing the garage to your doorstep.</p>
             <div class="flex flex-wrap gap-4 mt-8">
                 <button class="btn-primary px-8 py-3 text-base shadow-lg"><i class="fas fa-play-circle mr-2"></i> Watch Our Story</button>
                 <button class="btn-outline px-7 py-3"><i class="fas fa-users mr-2"></i> Meet The Team</button>
@@ -435,7 +541,7 @@
             <img src="assets/about-hero.jpg" 
                  class="rounded-3xl shadow-2xl border border-border w-full h-[450px] object-cover" alt="our team at work">
             <div class="absolute -bottom-4 -left-4 bg-card rounded-xl p-3 shadow-lg border border-border">
-                <div class="flex items-center gap-2"><i class="fas fa-certificate text-accent"></i><span class="font-bold">ASE Certified</span><span class="text-xs text-secondary">technicians</span></div>
+                <div class="flex items-center gap-2"><i class="fas fa-certificate text-accent"></i><span class="font-medium">ASE Certified</span><span class="text-xs text-secondary">technicians</span></div>
             </div>
         </div>
     </div>
@@ -445,29 +551,29 @@
 <section class="py-16 bg-[var(--hover-bg)]/30">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold"><i class="fas fa-heart text-accent mr-2"></i> Our <span class="text-accent">Core Values</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-heart text-accent mr-2"></i> Our <span class="text-accent">Core Values</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-            <p class="text-secondary mt-3">The principles that drive everything we do</p>
+            <p class="text-secondary mt-3 max-w-2xl mx-auto">The principles that drive everything we do</p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-card rounded-2xl p-6 border border-border text-center hover:shadow-xl transition reveal">
                 <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4"><i class="fas fa-clock text-3xl text-accent"></i></div>
-                <h3 class="font-bold text-xl">Speed</h3>
+                <h3 class="font-medium text-xl">Speed</h3>
                 <p class="text-secondary text-sm mt-2">Average response time under 30 minutes — we value your time</p>
             </div>
             <div class="bg-card rounded-2xl p-6 border border-border text-center hover:shadow-xl transition reveal">
                 <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4"><i class="fas fa-shield-alt text-3xl text-accent"></i></div>
-                <h3 class="font-bold text-xl">Trust</h3>
+                <h3 class="font-medium text-xl">Trust</h3>
                 <p class="text-secondary text-sm mt-2">Transparent pricing, honest recommendations, no upsells</p>
             </div>
             <div class="bg-card rounded-2xl p-6 border border-border text-center hover:shadow-xl transition reveal">
                 <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4"><i class="fas fa-graduation-cap text-3xl text-accent"></i></div>
-                <h3 class="font-bold text-xl">Expertise</h3>
+                <h3 class="font-medium text-xl">Expertise</h3>
                 <p class="text-secondary text-sm mt-2">ASE certified technicians with ongoing training</p>
             </div>
             <div class="bg-card rounded-2xl p-6 border border-border text-center hover:shadow-xl transition reveal">
                 <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4"><i class="fas fa-leaf text-3xl text-accent"></i></div>
-                <h3 class="font-bold text-xl">Sustainability</h3>
+                <h3 class="font-medium text-xl">Sustainability</h3>
                 <p class="text-secondary text-sm mt-2">Eco-friendly disposal, tire recycling program</p>
             </div>
         </div>
@@ -477,35 +583,35 @@
 <!-- ========== SECTION 3: OUR JOURNEY TIMELINE ========== -->
 <section class="py-16 max-w-7xl mx-auto px-5">
     <div class="text-center reveal mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold"><i class="fas fa-road text-accent mr-2"></i> Our <span class="text-accent">Journey</span></h2>
+        <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-road text-accent mr-2"></i> Our <span class="text-accent">Journey</span></h2>
         <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-        <p class="text-secondary mt-3">From a single van to a fleet serving thousands</p>
+        <p class="text-secondary mt-3 max-w-2xl mx-auto">From a single van to a fleet serving thousands</p>
     </div>
     <div class="grid md:grid-cols-2 gap-8">
         <div class="space-y-6 reveal">
             <div class="flex gap-4">
-                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-bold text-accent">1</span></div>
-                <div><h3 class="font-bold text-xl">2018 — The Beginning</h3><p class="text-secondary text-sm">Founded with one service van, serving the downtown area with mobile tire repairs.</p></div>
+                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-medium text-accent">1</span></div>
+                <div><h3 class="font-medium text-xl">2018 — The Beginning</h3><p class="text-secondary text-sm">Founded with one service van, serving the downtown area with mobile tire repairs.</p></div>
             </div>
             <div class="flex gap-4">
-                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-bold text-accent">2</span></div>
-                <div><h3 class="font-bold text-xl">2020 — Fleet Expansion</h3><p class="text-secondary text-sm">Grew to 5 vans, expanded service area to cover entire metro region.</p></div>
+                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-medium text-accent">2</span></div>
+                <div><h3 class="font-medium text-xl">2020 — Fleet Expansion</h3><p class="text-secondary text-sm">Grew to 5 vans, expanded service area to cover entire metro region.</p></div>
             </div>
             <div class="flex gap-4">
-                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-bold text-accent">3</span></div>
-                <div><h3 class="font-bold text-xl">2022 — Tech Innovation</h3><p class="text-secondary text-sm">Launched live tracking app, online booking, and digital vehicle inspections.</p></div>
+                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-medium text-accent">3</span></div>
+                <div><h3 class="font-medium text-xl">2022 — Tech Innovation</h3><p class="text-secondary text-sm">Launched live tracking app, online booking, and digital vehicle inspections.</p></div>
             </div>
             <div class="flex gap-4">
-                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-bold text-accent">4</span></div>
-                <div><h3 class="font-bold text-xl">2024 — Today</h3><p class="text-secondary text-sm">20+ vans, 50+ technicians, 15k+ customers served across 3 major cities.</p></div>
+                <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0"><span class="text-2xl font-medium text-accent">4</span></div>
+                <div><h3 class="font-medium text-xl">2024 — Today</h3><p class="text-secondary text-sm">20+ vans, 50+ technicians, 15k+ customers served across 3 major cities.</p></div>
             </div>
         </div>
         <div class="bg-card rounded-2xl p-6 border border-border reveal">
             <div class="grid grid-cols-2 gap-4 text-center mb-6">
-                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-bold text-accent">15k+</div><div class="text-secondary text-sm">Customers Served</div></div>
-                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-bold text-accent">98%</div><div class="text-secondary text-sm">Satisfaction Rate</div></div>
-                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-bold text-accent">20+</div><div class="text-secondary text-sm">Service Vans</div></div>
-                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-bold text-accent">24/7</div><div class="text-secondary text-sm">Emergency Support</div></div>
+                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-medium text-accent">15k+</div><div class="text-secondary text-sm">Customers Served</div></div>
+                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-medium text-accent">98%</div><div class="text-secondary text-sm">Satisfaction Rate</div></div>
+                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-medium text-accent">20+</div><div class="text-secondary text-sm">Service Vans</div></div>
+                <div class="p-4 bg-accent/5 rounded-xl"><div class="text-3xl font-medium text-accent">24/7</div><div class="text-secondary text-sm">Emergency Support</div></div>
             </div>
             <div class="border-t border-border pt-4"><p class="text-secondary text-sm italic text-center">"From a single van to a trusted name in mobile tire service — our growth is powered by customer trust."</p><p class="text-center text-xs text-accent mt-2">— Mike Chen, Founder & CEO</p></div>
         </div>
@@ -516,26 +622,26 @@
 <section class="py-16 bg-accent/5">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold"><i class="fas fa-user-tie text-accent mr-2"></i> Meet The <span class="text-accent">Team</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-user-tie text-accent mr-2"></i> Meet The <span class="text-accent">Team</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-            <p class="text-secondary mt-3">The experts behind every successful service call</p>
+            <p class="text-secondary mt-3 max-w-2xl mx-auto">The experts behind every successful service call</p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl transition reveal text-center">
                 <img src="assets/team-member-1.jpg" class="w-full h-64 object-cover" alt="team member">
-                <div class="p-4"><h3 class="font-bold text-lg">Mike Chen</h3><p class="text-accent text-sm">Founder & CEO</p><p class="text-secondary text-xs mt-2">Former master technician with 15+ years experience</p></div>
+                <div class="p-4"><h3 class="font-medium text-lg">Mike Chen</h3><p class="text-accent text-sm">Founder & CEO</p><p class="text-secondary text-xs mt-2">Former master technician with 15+ years experience</p></div>
             </div>
             <div class="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl transition reveal text-center">
                 <img src="assets/team-member-2.jpg" class="w-full h-64 object-cover" alt="team member">
-                <div class="p-4"><h3 class="font-bold text-lg">Sarah Rodriguez</h3><p class="text-accent text-sm">Operations Director</p><p class="text-secondary text-xs mt-2">Fleet logistics expert, 10+ years in dispatch</p></div>
+                <div class="p-4"><h3 class="font-medium text-lg">Sarah Rodriguez</h3><p class="text-accent text-sm">Operations Director</p><p class="text-secondary text-xs mt-2">Fleet logistics expert, 10+ years in dispatch</p></div>
             </div>
             <div class="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl transition reveal text-center">
                 <img src="assets/team-member-3.jpg" class="w-full h-64 object-cover" alt="team member">
-                <div class="p-4"><h3 class="font-bold text-lg">James Wilson</h3><p class="text-accent text-sm">Lead Technician</p><p class="text-secondary text-xs mt-2">ASE Master Certified, 12 years experience</p></div>
+                <div class="p-4"><h3 class="font-medium text-lg">James Wilson</h3><p class="text-accent text-sm">Lead Technician</p><p class="text-secondary text-xs mt-2">ASE Master Certified, 12 years experience</p></div>
             </div>
             <div class="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl transition reveal text-center">
                 <img src="assets/team-member-4.jpg" class="w-full h-64 object-cover" alt="team member">
-                <div class="p-4"><h3 class="font-bold text-lg">Emily Park</h3><p class="text-accent text-sm">Customer Success</p><p class="text-secondary text-xs mt-2">Ensuring 5-star experiences daily</p></div>
+                <div class="p-4"><h3 class="font-medium text-lg">Emily Park</h3><p class="text-accent text-sm">Customer Success</p><p class="text-secondary text-xs mt-2">Ensuring 5-star experiences daily</p></div>
             </div>
         </div>
     </div>
@@ -545,8 +651,8 @@
 <section class="py-16 max-w-7xl mx-auto px-5">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div class="reveal order-2 lg:order-1">
-            <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold mb-4"><i class="fas fa-medal mr-1"></i> WHY DRIVERS CHOOSE US</span>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">More Than <span class="text-accent">Just Tires</span></h2>
+            <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium mb-4"><i class="fas fa-medal mr-1"></i> WHY DRIVERS CHOOSE US</span>
+            <h2 class="text-3xl md:text-4xl font-medium mb-4">More Than <span class="text-accent">Just Tires</span></h2>
             <p class="text-secondary mb-6">We're building a better service experience — one that respects your time, your vehicle, and your wallet.</p>
             <div class="space-y-3">
                 <div class="flex gap-3 items-center"><i class="fas fa-check-circle text-accent"></i><span>100% mobile — we come to you, anywhere</span></div>
@@ -562,23 +668,23 @@
                 <i class="fas fa-quote-left text-3xl text-accent opacity-50 mb-3"></i>
                 <p class="text-lg font-medium italic">"Torque has completely changed how I think about tire service. No more waiting rooms, no more wasted mornings. Just expert help when and where I need it."</p>
                 <div class="flex items-center gap-3 mt-4 pt-4 border-t border-border">
-                    <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center"><span class="font-bold text-accent">JD</span></div>
-                    <div><p class="font-bold">John Davidson</p><div class="flex text-accent text-sm">★★★★★</div></div>
+                    <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center"><span class="font-medium text-accent">JD</span></div>
+                    <div><p class="font-medium">John Davidson</p><div class="flex text-accent text-sm">★★★★★</div></div>
                 </div>
             </div>
             <div class="mt-6 bg-accent rounded-2xl p-6 text-white text-center">
-                <h3 class="text-xl font-bold mb-2">Join 15,000+ Happy Drivers</h3>
+                <h3 class="text-xl font-medium mb-2">Join 15,000+ Happy Drivers</h3>
                 <p class="text-white/80 mb-4">Experience the Torque difference today</p>
-                <button class="bg-white text-accent px-6 py-2 rounded-full font-semibold hover:shadow-lg transition"><i class="fas fa-calendar-check mr-2"></i> Schedule Service</button>
+                <button class="bg-white text-accent px-6 py-2 rounded-full font-medium hover:shadow-lg transition"><i class="fas fa-calendar-check mr-2"></i> Schedule Service</button>
             </div>
         </div>
     </div>
     <!-- Community Impact Section -->
     <div class="mt-12 bg-card rounded-2xl p-6 border border-border reveal">
         <div class="grid md:grid-cols-3 gap-6 text-center">
-            <div><i class="fas fa-tree text-2xl text-accent"></i><h4 class="font-bold mt-2">1,500+ Tires Recycled</h4><p class="text-secondary text-xs">Diverted from landfills annually</p></div>
-            <div><i class="fas fa-hand-holding-heart text-2xl text-accent"></i><h4 class="font-bold mt-2">$25k+ Donated</h4><p class="text-secondary text-xs">To local driving safety programs</p></div>
-            <div><i class="fas fa-charging-station text-2xl text-accent"></i><h4 class="font-bold mt-2">EV Ready Fleet</h4><p class="text-secondary text-xs">50% electric service vans by 2026</p></div>
+            <div><i class="fas fa-tree text-2xl text-accent"></i><h4 class="font-medium mt-2">1,500+ Tires Recycled</h4><p class="text-secondary text-xs">Diverted from landfills annually</p></div>
+            <div><i class="fas fa-hand-holding-heart text-2xl text-accent"></i><h4 class="font-medium mt-2">$25k+ Donated</h4><p class="text-secondary text-xs">To local driving safety programs</p></div>
+            <div><i class="fas fa-charging-station text-2xl text-accent"></i><h4 class="font-medium mt-2">EV Ready Fleet</h4><p class="text-secondary text-xs">50% electric service vans by 2026</p></div>
         </div>
     </div>
 </section>
@@ -589,7 +695,7 @@
         style="background: var(--footer-bg); color: var(--footer-text);">
         <div class="max-w-7xl mx-auto px-5 grid grid-cols-2 md:grid-cols-6 lg:grid-cols-5 gap-8">
             <div class="col-span-2 md:col-span-3 lg:col-span-1">
-                <span class="text-2xl font-black text-accent">Torque</span>
+                <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
                 <p class="text-xs text-slate-400 mt-3 leading-relaxed">
                     Premier 24/7 on-demand mobile tire fitting and flat repair service. Shop-grade expertise brought
                     directly to your location.
@@ -614,7 +720,7 @@
                 </div>
             </div>
             <div>
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Services</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Services</h4>
                 <ul class="text-xs space-y-2.5 text-slate-400">
                     <li><a href="#inventory"
                             class="hover:text-accent hover:translate-x-1 inline-block transition-all duration-200">Mobile
@@ -634,7 +740,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Support</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Support</h4>
                 <ul class="text-xs space-y-2.5 text-slate-400">
                     <li><a href="contact.html"
                             class="hover:text-accent hover:translate-x-1 inline-block transition-all duration-200">Request
@@ -654,7 +760,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Company</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Company</h4>
                 <ul class="text-xs space-y-2.5 text-slate-400">
                     <li><a href="#tracking"
                             class="hover:text-accent hover:translate-x-1 inline-block transition-all duration-200">Coverage
@@ -674,7 +780,7 @@
                 </ul>
             </div>
             <div class="col-span-2 md:col-span-3 lg:col-span-1">
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Stay Connected</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Stay Connected</h4>
                 <p class="text-xs text-slate-400 mb-3 leading-relaxed">
                     Subscribe for emergency roadside tire safety tips, recall alerts, and seasonal fitment offers.
                 </p>
@@ -682,7 +788,7 @@
                     <input type="email" placeholder="Your email address" required
                         class="bg-slate-800 border border-slate-700 text-white text-xs rounded-lg px-3 py-2 w-full focus:outline-none focus:border-accent transition-colors">
                     <button type="submit"
-                        class="bg-accent text-white px-3 py-2 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"><i
+                        class="bg-accent text-white px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90 transition-opacity"><i
                             class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
@@ -748,12 +854,12 @@
             // 1. Clean slate: clear all hardcoded active classes
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.dropdown-toggle').forEach(link => link.classList.remove('active'));
-            document.querySelectorAll('.dropdown-menu a').forEach(link => link.classList.remove('text-accent', 'font-semibold'));
+            document.querySelectorAll('.dropdown-menu a').forEach(link => link.classList.remove('text-accent', 'font-medium'));
             
             const mobileDrawer = document.getElementById('mobile-drawer');
             if (mobileDrawer) {
                 mobileDrawer.querySelectorAll('a').forEach(link => {
-                    link.classList.remove('active', 'text-accent', 'font-semibold');
+                    link.classList.remove('active', 'text-accent', 'font-medium');
                 });
                 mobileDrawer.querySelectorAll('button').forEach(btn => {
                     btn.classList.remove('text-accent');
@@ -770,7 +876,7 @@
             document.querySelectorAll('.dropdown-menu a').forEach(link => {
                 const href = link.getAttribute('href');
                 if (href === currentPage) {
-                    link.classList.add('text-accent', 'font-semibold');
+                    link.classList.add('text-accent', 'font-medium');
                     const wrapper = link.closest('.dropdown-wrapper');
                     if (wrapper) {
                         const toggle = wrapper.querySelector('.dropdown-toggle');
@@ -800,7 +906,7 @@
                     if (href === currentPage) {
                         link.classList.add('active');
                         if (!link.classList.contains('rounded-full')) {
-                            link.classList.add('text-accent', 'font-semibold');
+                            link.classList.add('text-accent', 'font-medium');
                         }
                         
                         // Handle parents/submenus
@@ -829,7 +935,7 @@
                     
                     const matchingLink = mobileDrawer.querySelector(`a[href="${currentPage}"]`);
                     if (matchingLink) {
-                        matchingLink.classList.add('active', 'text-accent', 'font-semibold');
+                        matchingLink.classList.add('active', 'text-accent', 'font-medium');
                     }
                 }
             }
@@ -843,3 +949,10 @@
 </body>
 
 </html>
+
+
+
+
+
+
+

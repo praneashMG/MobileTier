@@ -307,6 +307,113 @@
             right: 0;
         }
     </style>
+    <style id="typography-alignment">
+        /* Typography Alignment & Consistency Overrides */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500 !important;
+        }
+        /* Keep paragraph weights 400-500 */
+        p:not(.font-medium), div.text-secondary {
+            font-weight: 400 !important;
+        }
+        /* Ensure proper text alignment inside cards */
+        .tire-card, .bg-card, .card {
+            text-align: left !important;
+        }
+        .text-center .tire-card, .text-center .bg-card {
+            text-align: left !important;
+        }
+        /* Reduce overly wide paragraphs inside containers for readability */
+        .container p, section > div > p.text-secondary {
+            max-width: 65ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tire-card p, .bg-card p, .card p, .text-left p {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: none !important;
+        }
+    </style>
+    <style id="cta-improvements">
+        /* Primary CTA Highlights */
+        .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(224, 90, 42, 0.4);
+            color: #ffffff !important;
+        }
+        html[data-theme='dark'] .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(249, 115, 22, 0.3);
+            color: #0f172a !important; /* High contrast in dark mode */
+            font-weight: 600 !important;
+        }
+        
+        /* Hover Color Consistency & Contrast */
+        .btn-primary:hover {
+            background-color: var(--accent-dark) !important;
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 16px 0 rgba(224, 90, 42, 0.5);
+        }
+        html[data-theme='dark'] .btn-primary:hover {
+            box-shadow: 0 6px 16px 0 rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-outline {
+            color: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            color: #0f172a !important; /* High contrast in dark mode */
+        }
+
+        /* Align CTA buttons consistently inside cards/grids */
+        .tire-card, .dashboard-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .tire-card > div:last-child, .dashboard-card > div:last-child, .dashboard-card > button:last-child {
+            margin-top: auto;
+        }
+    </style>
+    <style id="image-improvements">
+        /* Prevent image distortion globally */
+        img:not([src*="fav.png"]):not(.object-contain) {
+            object-fit: cover !important;
+        }
+        
+        /* Ensure proper background overlays for readability (apply to containers if needed) */
+        .bg-overlay {
+            position: relative;
+        }
+        .bg-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bg-overlay > * {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style id="responsive-fixes">
+        /* Guarantee text wrapping on small screens */
+        body {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: break-all;
+            word-break: break-word;
+        }
+    </style>
 </head>
 
 <body class="antialiased">
@@ -315,7 +422,7 @@
     <header class="fixed top-0 left-0 w-full z-50 pt-3" id="main-header">
         <nav
             class="max-w-7xl mx-auto px-5 py-3 rounded-2xl flex items-center justify-between backdrop-blur-sm border border-border">
-            <a href="index.html" class="text-2xl font-black tracking-tight"><span class="text-accent">Torque</span></a>
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
             <!-- Desktop Center Nav -->
             <div class="hidden xl:flex items-center space-x-8 rtl:space-x-reverse text-sm font-medium">
                 <div class="dropdown-wrapper">
@@ -324,7 +431,7 @@
                             class="fas fa-chevron-down text-[10px] leading-none inline-block translate-y-[2.5px]"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="index.html" class="text-accent font-semibold">Home 1</a>
+                        <a href="index.html" class="text-accent font-medium">Home 1</a>
                         <a href="home2.html">Home 2</a>
                     </div>
                 </div>
@@ -370,25 +477,24 @@
         <div id="drawer-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition pointer-events-none"></div>
         <div id="drawer-panel"
             class="absolute top-0 left-0 w-80 h-full bg-card shadow-2xl transform -translate-x-full transition-transform duration-300 p-6 overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-border pb-4"><span
-                    class="text-2xl font-black text-accent">Torque</span><button id="drawer-close"><i
+            <div class="flex justify-between items-center border-b border-border pb-4"><a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a><button id="drawer-close"><i
                         class="fas fa-times text-xl"></i></button></div>
             <nav class="flex flex-col gap-3 mt-6">
                 <div><button id="mobile-home-toggle"
-                        class="flex w-full justify-between items-center py-2 font-semibold text-accent">Home <i
+                        class="flex w-full justify-between items-center py-2 font-medium text-accent">Home <i
                             class="fas fa-chevron-down text-xs"></i></button>
                     <div id="mobile-home-submenu" class="pl-4 flex flex-col gap-2 mt-1 border-l border-border">
-                        <a href="index.html" class="text-accent font-semibold">Home 1</a><a href="home2.html">Home 2</a>
+                        <a href="index.html" class="text-accent font-medium">Home 1</a><a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="py-2 font-semibold">Services</a>
-                <a href="tire.html" class="py-2 font-semibold">Tire Installation</a>
-                <a href="flatrepair.html" class="py-2 font-semibold">Flat Repair</a>
-                <a href="pricing.html" class="py-2 font-semibold">Pricing</a>
-                <a href="about.html" class="py-2 font-semibold">About Us</a>
-                <a href="contact.html" class="py-2 font-semibold">Contact</a>
+                <a href="service.html" class="py-2 font-medium">Services</a>
+                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
+                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
+                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
+                <a href="about.html" class="py-2 font-medium">About Us</a>
+                <a href="contact.html" class="py-2 font-medium">Contact</a>
                 <div><button id="mobile-dashboard-toggle"
-                        class="flex w-full justify-between items-center py-2 font-semibold">Dashboard <i
+                        class="flex w-full justify-between items-center py-2 font-medium">Dashboard <i
                             class="fas fa-chevron-down text-xs"></i></button>
                     <div id="mobile-dashboard-submenu"
                         class="hidden pl-4 flex flex-col gap-2 mt-1 border-l border-border">
@@ -415,13 +521,13 @@
 <section class="relative overflow-hidden pb-12 md:pb-20">
     <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
         <div class="reveal">
-            <span class="inline-block bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-semibold mb-4">
+            <span class="inline-block bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-medium mb-4">
                 <i class="fas fa-tag mr-1"></i> TRANSPARENT PRICING • NO HIDDEN FEES
             </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+            <h1 class="text-4xl md:text-5xl font-medium leading-tight">
                 Fair & <span class="text-accent">Upfront</span> Pricing
             </h1>
-            <p class="text-secondary text-lg mt-4">What you see is what you pay. No surprise service fees, no hidden trip charges — just honest, competitive rates for professional mobile tire service.</p>
+            <p class="text-secondary text-lg mt-4 max-w-2xl mx-auto">What you see is what you pay. No surprise service fees, no hidden trip charges — just honest, competitive rates for professional mobile tire service.</p>
             <div class="flex flex-wrap gap-4 mt-8">
                 <button class="btn-primary px-8 py-3 text-base shadow-lg"><i class="fas fa-calculator mr-2"></i> Build Your Package</button>
                 <button class="btn-outline px-7 py-3"><i class="fas fa-file-pdf mr-2"></i> Download Price List</button>
@@ -436,7 +542,7 @@
             <img src="assets/pricing-hero.jpg" 
                  class="rounded-3xl shadow-2xl border border-border w-full h-[450px] object-cover" alt="pricing calculator">
             <div class="absolute -bottom-4 -right-4 bg-card rounded-xl p-3 shadow-lg border border-border">
-                <div class="flex items-center gap-2"><i class="fas fa-star text-accent"></i><span class="font-bold">Best Value</span><span class="text-xs text-secondary">guaranteed</span></div>
+                <div class="flex items-center gap-2"><i class="fas fa-star text-accent"></i><span class="font-medium">Best Value</span><span class="text-xs text-secondary">guaranteed</span></div>
             </div>
         </div>
     </div>
@@ -446,17 +552,17 @@
 <section class="py-16 bg-[var(--hover-bg)]/30">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-bold"><i class="fas fa-dollar-sign text-accent mr-2"></i> Service <span class="text-accent">Price List</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-dollar-sign text-accent mr-2"></i> Service <span class="text-accent">Price List</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-            <p class="text-secondary mt-3">Individual service rates — bundle and save with our packages</p>
+            <p class="text-secondary mt-3 max-w-2xl mx-auto">Individual service rates — bundle and save with our packages</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             <!-- Card 1 -->
             <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition flex flex-col justify-between h-full">
                 <div>
                     <div class="flex justify-between items-start">
-                        <div><i class="fas fa-screwdriver-wrench text-2xl text-accent mb-2"></i><h3 class="font-bold text-lg">Flat Tire Repair</h3></div>
-                        <span class="text-2xl font-bold text-accent">$35</span>
+                        <div><i class="fas fa-screwdriver-wrench text-2xl text-accent mb-2"></i><h3 class="font-medium text-lg">Flat Tire Repair</h3></div>
+                        <span class="text-2xl font-medium text-accent">$35</span>
                     </div>
                     <p class="text-secondary text-sm mt-2">Puncture repair within tread area, includes plug & patch</p>
                 </div>
@@ -466,8 +572,8 @@
             <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition flex flex-col justify-between h-full">
                 <div>
                     <div class="flex justify-between items-start">
-                        <div><i class="fas fa-car-side text-2xl text-accent mb-2"></i><h3 class="font-bold text-lg">Spare Tire Installation</h3></div>
-                        <span class="text-2xl font-bold text-accent">$29</span>
+                        <div><i class="fas fa-car-side text-2xl text-accent mb-2"></i><h3 class="font-medium text-lg">Spare Tire Installation</h3></div>
+                        <span class="text-2xl font-medium text-accent">$29</span>
                     </div>
                     <p class="text-secondary text-sm mt-2">Mount your spare, check pressure, safety inspection</p>
                 </div>
@@ -477,8 +583,8 @@
             <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition flex flex-col justify-between h-full">
                 <div>
                     <div class="flex justify-between items-start">
-                        <div><i class="fas fa-sync-alt text-2xl text-accent mb-2"></i><h3 class="font-bold text-lg">Tire Rotation</h3></div>
-                        <span class="text-2xl font-bold text-accent">$49</span>
+                        <div><i class="fas fa-sync-alt text-2xl text-accent mb-2"></i><h3 class="font-medium text-lg">Tire Rotation</h3></div>
+                        <span class="text-2xl font-medium text-accent">$49</span>
                     </div>
                     <p class="text-secondary text-sm mt-2">Cross rotation pattern, torque check, tread inspection</p>
                 </div>
@@ -488,8 +594,8 @@
             <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition flex flex-col justify-between h-full">
                 <div>
                     <div class="flex justify-between items-start">
-                        <div><i class="fas fa-balance-scale text-2xl text-accent mb-2"></i><h3 class="font-bold text-lg">Wheel Balancing</h3></div>
-                        <span class="text-2xl font-bold text-accent">$59</span>
+                        <div><i class="fas fa-balance-scale text-2xl text-accent mb-2"></i><h3 class="font-medium text-lg">Wheel Balancing</h3></div>
+                        <span class="text-2xl font-medium text-accent">$59</span>
                     </div>
                     <p class="text-secondary text-sm mt-2">Computer spin balancing for 4 wheels, vibration elimination</p>
                 </div>
@@ -499,8 +605,8 @@
             <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition flex flex-col justify-between h-full">
                 <div>
                     <div class="flex justify-between items-start">
-                        <div><i class="fas fa-microchip text-2xl text-accent mb-2"></i><h3 class="font-bold text-lg">TPMS Service</h3></div>
-                        <span class="text-2xl font-bold text-accent">$25</span>
+                        <div><i class="fas fa-microchip text-2xl text-accent mb-2"></i><h3 class="font-medium text-lg">TPMS Service</h3></div>
+                        <span class="text-2xl font-medium text-accent">$25</span>
                     </div>
                     <p class="text-secondary text-sm mt-2">Sensor reprogramming, reset, or diagnostic scan</p>
                 </div>
@@ -510,8 +616,8 @@
             <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition flex flex-col justify-between h-full">
                 <div>
                     <div class="flex justify-between items-start">
-                        <div><i class="fas fa-tachometer-alt text-2xl text-accent mb-2"></i><h3 class="font-bold text-lg">Tire Pressure Check</h3></div>
-                        <span class="text-2xl font-bold text-accent">$15</span>
+                        <div><i class="fas fa-tachometer-alt text-2xl text-accent mb-2"></i><h3 class="font-medium text-lg">Tire Pressure Check</h3></div>
+                        <span class="text-2xl font-medium text-accent">$15</span>
                     </div>
                     <p class="text-secondary text-sm mt-2">All 4 tires + spare, nitrogen fill available (+$10)</p>
                 </div>
@@ -524,17 +630,17 @@
 <!-- ========== SECTION 3: COMPLETE PACKAGES (MONTHLY & ONE-TIME) ========== -->
 <section class="py-16 max-w-7xl mx-auto px-5">
     <div class="text-center reveal mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold"><i class="fas fa-box text-accent mr-2"></i> Value <span class="text-accent">Packages</span></h2>
+        <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-box text-accent mr-2"></i> Value <span class="text-accent">Packages</span></h2>
         <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-        <p class="text-secondary mt-3">Bundle services and save up to 30% compared to individual pricing</p>
+        <p class="text-secondary mt-3 max-w-2xl mx-auto">Bundle services and save up to 30% compared to individual pricing</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Basic Package -->
         <div class="bg-card rounded-2xl border border-border hover:shadow-xl transition reveal flex flex-col justify-between h-full">
             <div>
                 <div class="p-6 text-center border-b border-border">
-                    <h3 class="text-2xl font-bold">Essential Care</h3>
-                    <div class="text-4xl font-bold text-accent mt-3">$79<span class="text-base text-secondary">/year</span></div>
+                    <h3 class="text-2xl font-medium">Essential Care</h3>
+                    <div class="text-4xl font-medium text-accent mt-3">$79<span class="text-base text-secondary">/year</span></div>
                     <p class="text-secondary text-sm mt-2">Perfect for occasional drivers</p>
                 </div>
                 <ul class="p-6 space-y-3">
@@ -545,15 +651,15 @@
                     <li class="flex items-center gap-2 text-secondary"><i class="fas fa-times-circle"></i> Emergency priority</li>
                 </ul>
             </div>
-            <div class="p-6 pt-0"><button class="w-full btn-outline py-2.5 font-semibold">Choose Plan →</button></div>
+            <div class="p-6 pt-0"><button class="w-full btn-outline py-2.5 font-medium">Choose Plan →</button></div>
         </div>
         <!-- Premium Package (Highlighted) -->
         <div class="bg-card rounded-2xl border-2 border-accent hover:shadow-xl transition reveal relative flex flex-col justify-between h-full">
-            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-bold z-10">BEST VALUE</div>
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-medium z-10">BEST VALUE</div>
             <div>
                 <div class="p-6 text-center border-b border-border pt-8">
-                    <h3 class="text-2xl font-bold">Premium Care</h3>
-                    <div class="text-4xl font-bold text-accent mt-3">$149<span class="text-base text-secondary">/year</span></div>
+                    <h3 class="text-2xl font-medium">Premium Care</h3>
+                    <div class="text-4xl font-medium text-accent mt-3">$149<span class="text-base text-secondary">/year</span></div>
                     <p class="text-secondary text-sm mt-2">Most popular for daily drivers</p>
                 </div>
                 <ul class="p-6 space-y-3">
@@ -564,14 +670,14 @@
                     <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Priority dispatch</li>
                 </ul>
             </div>
-            <div class="p-6 pt-0"><button class="w-full btn-primary py-2.5 font-semibold">Choose Plan →</button></div>
+            <div class="p-6 pt-0"><button class="w-full btn-primary py-2.5 font-medium">Choose Plan →</button></div>
         </div>
         <!-- Family Package -->
         <div class="bg-card rounded-2xl border border-border hover:shadow-xl transition reveal flex flex-col justify-between h-full">
             <div>
                 <div class="p-6 text-center border-b border-border">
-                    <h3 class="text-2xl font-bold">Family Plan</h3>
-                    <div class="text-4xl font-bold text-accent mt-3">$249<span class="text-base text-secondary">/year</span></div>
+                    <h3 class="text-2xl font-medium">Family Plan</h3>
+                    <div class="text-4xl font-medium text-accent mt-3">$249<span class="text-base text-secondary">/year</span></div>
                     <p class="text-secondary text-sm mt-2">Covers up to 3 vehicles</p>
                 </div>
                 <ul class="p-6 space-y-3">
@@ -582,7 +688,7 @@
                     <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 15% off all services</li>
                 </ul>
             </div>
-            <div class="p-6 pt-0"><button class="w-full btn-outline py-2.5 font-semibold">Choose Plan →</button></div>
+            <div class="p-6 pt-0"><button class="w-full btn-outline py-2.5 font-medium">Choose Plan →</button></div>
         </div>
     </div>
 </section>
@@ -592,7 +698,7 @@
         
         <!-- Heading -->
         <div class="text-center reveal mb-8 md:mb-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-medium leading-tight">
                 <i class="fas fa-tag text-accent mr-2"></i>
                 Tire <span class="text-accent">Pricing</span>
             </h2>
@@ -634,11 +740,11 @@
                             Summer Performance
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $189
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $699
                         </td>
 
@@ -663,11 +769,11 @@
                             All-Weather
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $212
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $789
                         </td>
 
@@ -692,11 +798,11 @@
                             EV / All-Season
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $165
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $599
                         </td>
 
@@ -721,11 +827,11 @@
                             Touring
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $178
                         </td>
 
-                        <td class="p-3 md:p-4 text-accent font-bold whitespace-nowrap">
+                        <td class="p-3 md:p-4 text-accent font-medium whitespace-nowrap">
                             $649
                         </td>
 
@@ -749,11 +855,11 @@
                 </div>
 
                 <div>
-                    <h3 class="font-bold text-base md:text-lg">
+                    <h3 class="font-medium text-base md:text-lg">
                         Free Delivery
                     </h3>
 
-                    <p class="text-secondary text-sm mt-1">
+                    <p class="text-secondary text-sm mt-1 max-w-2xl mx-auto">
                         On tire orders over $400
                     </p>
                 </div>
@@ -766,11 +872,11 @@
                 </div>
 
                 <div>
-                    <h3 class="font-bold text-base md:text-lg">
+                    <h3 class="font-medium text-base md:text-lg">
                         Installation Included
                     </h3>
 
-                    <p class="text-secondary text-sm mt-1">
+                    <p class="text-secondary text-sm mt-1 max-w-2xl mx-auto">
                         Included on all set-of-4 purchases
                     </p>
                 </div>
@@ -783,11 +889,11 @@
                 </div>
 
                 <div>
-                    <h3 class="font-bold text-base md:text-lg">
+                    <h3 class="font-medium text-base md:text-lg">
                         Warranty
                     </h3>
 
-                    <p class="text-secondary text-sm mt-1">
+                    <p class="text-secondary text-sm mt-1 max-w-2xl mx-auto">
                         Manufacturer + labor coverage
                     </p>
                 </div>
@@ -802,18 +908,18 @@
     <div class="grid lg:grid-cols-2 gap-10">
         <div class="bg-card rounded-2xl p-8 border-2 border-accent reveal text-center">
             <i class="fas fa-hand-holding-usd text-5xl text-accent mb-3"></i>
-            <h3 class="text-2xl font-bold mb-2">Lowest Price Guarantee</h3>
+            <h3 class="text-2xl font-medium mb-2">Lowest Price Guarantee</h3>
             <p class="text-secondary text-sm mb-4">Find a lower quote from a licensed competitor? We'll beat it by 5%.</p>
             <div class="bg-accent/5 rounded-xl p-4 mb-5">
                 <div class="flex justify-between text-sm"><span>Competitor quote</span><span>$______</span></div>
-                <div class="flex justify-between text-sm font-bold mt-2"><span>Our price after match</span><span class="text-accent">5% lower</span></div>
+                <div class="flex justify-between text-sm font-medium mt-2"><span>Our price after match</span><span class="text-accent">5% lower</span></div>
             </div>
             <button class="btn-primary px-6 py-2">Submit Price Match →</button>
             <p class="text-xs text-secondary mt-3"><i class="fas fa-file-alt mr-1"></i> Must provide written quote</p>
         </div>
         <div class="space-y-5 reveal">
             <div class="bg-card rounded-2xl p-6 border border-border">
-                <h3 class="font-bold text-lg mb-3"><i class="fas fa-question-circle text-accent mr-2"></i> Pricing FAQs</h3>
+                <h3 class="font-medium text-lg mb-3"><i class="fas fa-question-circle text-accent mr-2"></i> Pricing FAQs</h3>
                 <div class="space-y-3">
                     <div><button class="faq-pricing flex justify-between items-center w-full text-left p-2 hover:bg-accent/5 rounded-lg">Do you charge a trip fee? <i class="fas fa-chevron-down text-accent"></i></button><div class="faq-pricing-answer hidden p-2 text-secondary text-sm">No trip fees within our standard service area ($0). Remote locations may have small surcharge — disclosed before booking.</div></div>
                     <div><button class="faq-pricing flex justify-between items-center w-full text-left p-2 hover:bg-accent/5 rounded-lg">What payment methods do you accept? <i class="fas fa-chevron-down text-accent"></i></button><div class="faq-pricing-answer hidden p-2 text-secondary text-sm">All major credit cards, Apple Pay, Google Pay, cash, and financing available through Affirm.</div></div>
@@ -822,14 +928,14 @@
                 </div>
             </div>
             <div class="bg-accent rounded-xl p-5 text-white text-center">
-                <p class="font-bold">Need a custom quote for multiple services?</p>
-                <button class="bg-white text-accent px-6 py-2 rounded-full mt-2 text-sm font-semibold"><i class="fas fa-calculator mr-2"></i> Build Custom Package</button>
+                <p class="font-medium">Need a custom quote for multiple services?</p>
+                <button class="bg-white text-accent px-6 py-2 rounded-full mt-2 text-sm font-medium"><i class="fas fa-calculator mr-2"></i> Build Custom Package</button>
             </div>
         </div>
     </div>
     <!-- Save Money Tips -->
     <div class="mt-10 bg-card rounded-2xl p-6 border border-border reveal">
-        <h3 class="font-bold text-center mb-4"><i class="fas fa-lightbulb text-accent mr-2"></i> Ways to Save</h3>
+        <h3 class="font-medium text-center mb-4"><i class="fas fa-lightbulb text-accent mr-2"></i> Ways to Save</h3>
         <div class="grid md:grid-cols-4 gap-4 text-center">
             <div><i class="fas fa-users text-accent text-xl"></i><p class="text-sm font-medium mt-1">Family Plan</p><p class="text-xs text-secondary">Save 35% on 3+ vehicles</p></div>
             <div><i class="fas fa-calendar-week text-accent text-xl"></i><p class="text-sm font-medium mt-1">Seasonal Bundle</p><p class="text-xs text-secondary">Winter/summer tire swap</p></div>
@@ -857,7 +963,7 @@
         style="background: var(--footer-bg); color: var(--footer-text);">
         <div class="max-w-7xl mx-auto px-5 grid grid-cols-2 md:grid-cols-6 lg:grid-cols-5 gap-8">
             <div class="col-span-2 md:col-span-3 lg:col-span-1">
-                <span class="text-2xl font-black text-accent">Torque</span>
+                <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
                 <p class="text-xs text-slate-400 mt-3 leading-relaxed">
                     Premier 24/7 on-demand mobile tire fitting and flat repair service. Shop-grade expertise brought
                     directly to your location.
@@ -882,7 +988,7 @@
                 </div>
             </div>
             <div>
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Services</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Services</h4>
                 <ul class="text-xs space-y-2.5 text-slate-400">
                     <li><a href="#inventory"
                             class="hover:text-accent hover:translate-x-1 inline-block transition-all duration-200">Mobile
@@ -902,7 +1008,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Support</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Support</h4>
                 <ul class="text-xs space-y-2.5 text-slate-400">
                     <li><a href="contact.html"
                             class="hover:text-accent hover:translate-x-1 inline-block transition-all duration-200">Request
@@ -922,7 +1028,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Company</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Company</h4>
                 <ul class="text-xs space-y-2.5 text-slate-400">
                     <li><a href="#tracking"
                             class="hover:text-accent hover:translate-x-1 inline-block transition-all duration-200">Coverage
@@ -942,7 +1048,7 @@
                 </ul>
             </div>
             <div class="col-span-2 md:col-span-3 lg:col-span-1">
-                <h4 class="font-semibold text-sm tracking-wider uppercase text-white mb-4">Stay Connected</h4>
+                <h4 class="font-medium text-sm tracking-wider uppercase text-white mb-4">Stay Connected</h4>
                 <p class="text-xs text-slate-400 mb-3 leading-relaxed">
                     Subscribe for emergency roadside tire safety tips, recall alerts, and seasonal fitment offers.
                 </p>
@@ -950,7 +1056,7 @@
                     <input type="email" placeholder="Your email address" required
                         class="bg-slate-800 border border-slate-700 text-white text-xs rounded-lg px-3 py-2 w-full focus:outline-none focus:border-accent transition-colors">
                     <button type="submit"
-                        class="bg-accent text-white px-3 py-2 rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity"><i
+                        class="bg-accent text-white px-3 py-2 rounded-lg text-xs font-medium hover:opacity-90 transition-opacity"><i
                             class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
@@ -1016,12 +1122,12 @@
             // 1. Clean slate: clear all hardcoded active classes
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.dropdown-toggle').forEach(link => link.classList.remove('active'));
-            document.querySelectorAll('.dropdown-menu a').forEach(link => link.classList.remove('text-accent', 'font-semibold'));
+            document.querySelectorAll('.dropdown-menu a').forEach(link => link.classList.remove('text-accent', 'font-medium'));
             
             const mobileDrawer = document.getElementById('mobile-drawer');
             if (mobileDrawer) {
                 mobileDrawer.querySelectorAll('a').forEach(link => {
-                    link.classList.remove('active', 'text-accent', 'font-semibold');
+                    link.classList.remove('active', 'text-accent', 'font-medium');
                 });
                 mobileDrawer.querySelectorAll('button').forEach(btn => {
                     btn.classList.remove('text-accent');
@@ -1038,7 +1144,7 @@
             document.querySelectorAll('.dropdown-menu a').forEach(link => {
                 const href = link.getAttribute('href');
                 if (href === currentPage) {
-                    link.classList.add('text-accent', 'font-semibold');
+                    link.classList.add('text-accent', 'font-medium');
                     const wrapper = link.closest('.dropdown-wrapper');
                     if (wrapper) {
                         const toggle = wrapper.querySelector('.dropdown-toggle');
@@ -1068,7 +1174,7 @@
                     if (href === currentPage) {
                         link.classList.add('active');
                         if (!link.classList.contains('rounded-full')) {
-                            link.classList.add('text-accent', 'font-semibold');
+                            link.classList.add('text-accent', 'font-medium');
                         }
                         
                         // Handle parents/submenus
@@ -1097,7 +1203,7 @@
                     
                     const matchingLink = mobileDrawer.querySelector(`a[href="${currentPage}"]`);
                     if (matchingLink) {
-                        matchingLink.classList.add('active', 'text-accent', 'font-semibold');
+                        matchingLink.classList.add('active', 'text-accent', 'font-medium');
                     }
                 }
             }
@@ -1111,3 +1217,10 @@
 </body>
 
 </html>
+
+
+
+
+
+
+

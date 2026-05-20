@@ -179,6 +179,113 @@
             }
         }
     </style>
+    <style id="typography-alignment">
+        /* Typography Alignment & Consistency Overrides */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500 !important;
+        }
+        /* Keep paragraph weights 400-500 */
+        p:not(.font-medium), div.text-secondary {
+            font-weight: 400 !important;
+        }
+        /* Ensure proper text alignment inside cards */
+        .tire-card, .bg-card, .card {
+            text-align: left !important;
+        }
+        .text-center .tire-card, .text-center .bg-card {
+            text-align: left !important;
+        }
+        /* Reduce overly wide paragraphs inside containers for readability */
+        .container p, section > div > p.text-secondary {
+            max-width: 65ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tire-card p, .bg-card p, .card p, .text-left p {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: none !important;
+        }
+    </style>
+    <style id="cta-improvements">
+        /* Primary CTA Highlights */
+        .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(224, 90, 42, 0.4);
+            color: #ffffff !important;
+        }
+        html[data-theme='dark'] .btn-primary {
+            box-shadow: 0 4px 12px 0 rgba(249, 115, 22, 0.3);
+            color: #0f172a !important; /* High contrast in dark mode */
+            font-weight: 600 !important;
+        }
+        
+        /* Hover Color Consistency & Contrast */
+        .btn-primary:hover {
+            background-color: var(--accent-dark) !important;
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 16px 0 rgba(224, 90, 42, 0.5);
+        }
+        html[data-theme='dark'] .btn-primary:hover {
+            box-shadow: 0 6px 16px 0 rgba(249, 115, 22, 0.4);
+        }
+        
+        .btn-outline {
+            color: var(--accent) !important;
+            border-color: var(--accent) !important;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            color: #0f172a !important; /* High contrast in dark mode */
+        }
+
+        /* Align CTA buttons consistently inside cards/grids */
+        .tire-card, .dashboard-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .tire-card > div:last-child, .dashboard-card > div:last-child, .dashboard-card > button:last-child {
+            margin-top: auto;
+        }
+    </style>
+    <style id="image-improvements">
+        /* Prevent image distortion globally */
+        img:not([src*="fav.png"]):not(.object-contain) {
+            object-fit: cover !important;
+        }
+        
+        /* Ensure proper background overlays for readability (apply to containers if needed) */
+        .bg-overlay {
+            position: relative;
+        }
+        .bg-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bg-overlay > * {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+    <style id="responsive-fixes">
+        /* Guarantee text wrapping on small screens */
+        body {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -ms-word-break: break-all;
+            word-break: break-word;
+        }
+    </style>
 </head>
 <body>
     <!-- Floating Theme/RTL Toggles in the Outside Corner -->
@@ -195,23 +302,23 @@
     <div class="login-card p-6 md:p-7 shadow-xl animate-fade-in">
         <!-- Logo centered (exact font and color like index.html, no dot) -->
         <div class="text-center mb-4">
-            <a href="index.html" class="text-2xl font-black tracking-tight"><span class="text-accent">Torque</span></a>
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
         </div>
 
         <!-- Welcome text -->
         <div class="text-center mb-5">
-            <h1 class="text-2xl md:text-3xl font-extrabold">Welcome back</h1>
+            <h1 class="text-2xl md:text-3xl font-medium">Welcome back</h1>
             <p class="text-secondary mt-1 text-xs">Sign in to manage your tires, schedule service & track your vehicle</p>
         </div>
 
         <!-- Login Form -->
         <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
             <div class="mb-3.5">
-                <label class="block text-xs font-semibold mb-1.5 text-primary-text">Email address</label>
+                <label class="block text-xs font-medium mb-1.5 text-primary-text">Email address</label>
                 <input type="email" id="email" class="input-field py-2.5 px-3.5 text-sm" placeholder="hello@torque.com" required autocomplete="email">
             </div>
             <div class="mb-3.5">
-                <label class="block text-xs font-semibold mb-1.5 text-primary-text">Password</label>
+                <label class="block text-xs font-medium mb-1.5 text-primary-text">Password</label>
                 <div class="relative">
                     <input type="password" id="password" class="input-field py-2.5 px-3.5 pr-10 rtl:pr-3.5 rtl:pl-10 text-sm" placeholder="••••••••" required autocomplete="current-password">
                     <button type="button" onclick="togglePasswordVisibility('password', this)" class="absolute right-3 rtl:right-auto rtl:left-3 top-1/2 -translate-y-1/2 text-secondary hover:text-accent transition focus:outline-none flex items-center justify-center" aria-label="Toggle password visibility">
@@ -254,7 +361,7 @@
         <!-- Sign up link -->
         <p class="text-center text-secondary text-xs mt-3">
             Don't have an account? 
-            <a href="signup.html" class="text-accent font-semibold hover:underline">Create account</a>
+            <a href="signup.html" class="text-accent font-medium hover:underline">Create account</a>
         </p>
         
         <!-- demo hint (subtle) -->
@@ -377,3 +484,10 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
