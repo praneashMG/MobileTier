@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <link rel="icon" type="image/png" href="assets/fav.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>404 - Flat Tire! | Torque Mobile Tire</title>
+    <!-- Tailwind + FontAwesome + Tone.js for premium procedural interactive sounds -->
+    <script src="tailwind.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    
+    <style>
+        /* ========== THEME VARIABLES (performance/vintage-modern) ========== */
+        :root,
+        html[data-theme='light'] {
+            --bg-body: #F7F9FC;
+            --text-primary: #0A1C2F;
+            --text-secondary: #2C3E50;
+            --accent: #E05A2A;
+            --accent-dark: #C13C0F;
+            --primary: #1E4A6B;
+            --card-bg: #FFFFFF;
+            --border-light: #E2E8F0;
+            --hover-bg: #FFF2EB;
+            --rating-star: #F59E0B;
+        }
+
+        html[data-theme='dark'] {
+            --bg-body: #0B1120;
+            --text-primary: #F1F5F9;
+            --text-secondary: #CBD5E1;
+            --accent: #F97316;
+            --accent-dark: #EA580C;
+            --primary: #2563EB;
+            --card-bg: #1E293B;
+            --border-light: #334155;
+            --hover-bg: #2D3A4F;
+            --rating-star: #FBBF24;
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            transition: background-color 0.25s ease, color 0.2s;
+            overflow-x: hidden;
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .bg-accent {
+            background-color: var(--accent);
+        }
+
+        .border-accent {
+            border-color: var(--accent);
+        }
+
+        .hover\:bg-accent\/10:hover {
+            background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+        }
+
+        .bg-card {
+            background-color: var(--card-bg);
+        }
+
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+
+        .border-border {
+            border-color: var(--border-light);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.7s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Custom Interactive Gauge and Tire animations */
+        .tire-container {
+            perspective: 1000px;
+        }
+
+        .flat-tire-svg {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Interactive tire pump animation styles */
+        @keyframes pulse-pump {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        .pump-active {
+            animation: pulse-pump 0.15s ease-in-out;
+        }
+
+        @keyframes rolling-tire {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .rolling {
+            animation: rolling-tire 4s linear infinite;
+        }
+
+        /* RTL support for layout items */
+        html[dir="rtl"] .hover\:translate-x-1:hover {
+            transform: translateX(-0.25rem) !important;
+        }
+    </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Minimal Immersive Floating Toolbar (Replaces bulky navigation while keeping utility) -->
+    <div class="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center z-50">
+        <a href="index.html" class="text-2xl font-black tracking-tight"><span class="text-accent">Torque</span></a>
+        
+        <div class="flex items-center gap-2 bg-card border border-border p-1.5 rounded-full shadow-sm">
+            <a href="index.html" class="p-2.5 rounded-full hover:bg-accent/10 transition-colors text-sm font-medium flex items-center gap-1.5 px-4" title="Go Home">
+                <i class="fas fa-home"></i> <span class="hidden sm:inline text-xs">Home</span>
+            </a>
+            <div class="h-4 w-px bg-border-light my-auto"></div>
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-accent/10 transition-colors" title="Toggle Theme">
+                <i class="fas fa-moon light-icon"></i><i class="fas fa-sun dark-icon hidden"></i>
+            </button>
+            <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10 transition-colors" title="Toggle Language (RTL)">
+                <i class="fas fa-globe"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== MAIN 404 CONTENT ========== -->
+    <main class="flex-grow flex items-center justify-center py-6">
+        <div class="max-w-7xl mx-auto px-5 w-full grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Side Text and Routing Info -->
+            <div class="md:col-span-7 space-y-6 reveal active">
+                <div class="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-xs font-semibold">
+                    <span class="animate-pulse">⚠️</span> ROAD ASSISTANCE DETOUR
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+                    Flat Tire! <br><span class="text-accent">404 Error</span>
+                </h1>
+                
+                <p class="text-secondary text-lg max-w-xl">
+                    Whoops! It looks like you've rolled over some sharp debris and wandered off the road. The page you're looking for doesn't exist, but we can get you moving again!
+                </p>
+
+                <!-- Search box to assist finding resources -->
+                <div class="max-w-md bg-card border border-border p-1.5 rounded-2xl flex items-center shadow-sm">
+                    <i class="fas fa-search text-secondary pl-3 pr-2"></i>
+                    <input type="text" id="site-search" placeholder="Search tire services, flat repairs..." 
+                        class="bg-transparent text-sm w-full outline-none py-2 text-primary"
+                        onkeydown="if(event.key === 'Enter') handleSearch();">
+                    <button onclick="handleSearch();" class="bg-accent hover:bg-accent-dark transition px-4 py-2 rounded-xl text-white text-xs font-bold whitespace-nowrap">
+                        Find Service
+                    </button>
+                </div>
+                
+                <!-- Routing options -->
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="index.html" class="btn-primary px-8 py-3 text-sm shadow-lg flex items-center gap-2">
+                        <i class="fas fa-home"></i> Go Back Home
+                    </a>
+                    <a href="service.html" class="btn-outline px-7 py-3 text-sm flex items-center gap-2">
+                        <i class="fas fa-tools"></i> View Services
+                    </a>
+                </div>
+
+                <div class="pt-6 border-t border-border grid grid-cols-3 gap-4 text-xs">
+                    <div>
+                        <span class="block text-secondary">Need Help?</span>
+                        <a href="tel:8005557655" class="font-bold text-accent hover:underline">(800) 555-ROLL</a>
+                    </div>
+                    <div>
+                        <span class="block text-secondary">Emergency Dispatch</span>
+                        <span class="font-bold">24/7 Available</span>
+                    </div>
+                    <div>
+                        <span class="block text-secondary">Live Van Tracking</span>
+                        <a href="index.html#tracking" class="font-bold text-accent hover:underline">Track Service</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side: Interactive Tire Pump Gamified Widget -->
+            <div class="md:col-span-5 flex flex-col items-center bg-card border border-border rounded-3xl p-6 md:p-8 shadow-xl relative overflow-hidden reveal active">
+                
+                <!-- Background ambient design -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl"></div>
+
+                <div class="w-full text-center mb-4">
+                    <h3 class="font-bold text-lg">Tire PSI Diagnostic Tool</h3>
+                    <p class="text-xs text-secondary mt-1">Pump up the flat tire to 32 PSI to jumpstart your trip!</p>
+                </div>
+
+                <!-- Custom Interactive Tire and Gauge Area -->
+                <div class="relative w-full aspect-square max-w-[280px] tire-container flex items-center justify-center">
+                    
+                    <!-- PSI Dial gauge wrapper -->
+                    <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                        <!-- Gauge Background Track -->
+                        <circle cx="50" cy="50" r="44" stroke="var(--border-light)" stroke-width="4" fill="transparent" />
+                        <!-- Active PSI Fill Indicator -->
+                        <circle id="gauge-fill" cx="50" cy="50" r="44" stroke="var(--accent)" stroke-width="5" fill="transparent" 
+                            stroke-dasharray="276" stroke-dashoffset="276" class="transition-all duration-300" />
+                    </svg>
+
+                    <!-- Interactive Tire SVG (Deflates and Inflates based on state) -->
+                    <div id="tire-illustration" class="w-48 h-48 flat-tire-svg flex items-center justify-center transform scale-y-[0.7]">
+                        <svg viewBox="0 0 200 200" class="w-full h-full text-slate-800 dark:text-slate-100" fill="currentColor">
+                            <!-- Outer tread -->
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="20" />
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="10, 15" />
+                            <!-- Inner Wheel Rim (Alloy / Metallic feeling) -->
+                            <circle cx="100" cy="100" r="48" fill="#4A5568" stroke="#1A202C" stroke-width="3" />
+                            <circle cx="100" cy="100" r="30" fill="#718096" />
+                            <!-- Alloy Spokes design -->
+                            <path d="M 100 52 L 100 148 M 52 100 L 148 100 M 66 66 L 134 134 M 66 134 L 134 66" stroke="#1A202C" stroke-width="5" />
+                            <circle cx="100" cy="100" r="16" fill="#1A202C" />
+                            <!-- Rim bolt details -->
+                            <circle cx="100" cy="100" r="6" fill="#A0AEC0" />
+                        </svg>
+                    </div>
+
+                    <!-- Centered Digital PSI Number display inside rim -->
+                    <div class="absolute flex flex-col items-center justify-center">
+                        <span id="psi-number" class="text-3xl font-black font-mono tracking-tight text-primary transition-all duration-200">10</span>
+                        <span class="text-[9px] uppercase font-bold text-secondary tracking-widest">PSI</span>
+                    </div>
+                </div>
+
+                <!-- Custom System Info Bar / Success banner -->
+                <div id="game-status-banner" class="w-full py-2 px-3 mt-4 text-center rounded-xl text-xs font-semibold bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200/40 transition-colors duration-300">
+                    ⚠️ ALERT: High pressure deficiency! Do not drive.
+                </div>
+
+                <!-- Game controls / interactive action buttons -->
+                <div class="w-full grid grid-cols-2 gap-3 mt-6">
+                    <button id="pump-air-btn" class="w-full bg-accent hover:bg-accent-dark text-white rounded-2xl py-3 px-4 font-bold text-sm shadow flex items-center justify-center gap-2 active:scale-95 transition-transform" onclick="pumpTire()">
+                        <i class="fas fa-compress-alt"></i> Pump Air
+                    </button>
+                    <button id="reset-tire-btn" class="w-full bg-slate-200 dark:bg-slate-700 hover:opacity-90 text-primary dark:text-slate-100 rounded-2xl py-3 px-4 font-semibold text-sm transition" onclick="resetTire()">
+                        <i class="fas fa-history mr-1"></i> Reset PSI
+                    </button>
+                </div>
+
+                <!-- Toast messaging box (No system alerts!) -->
+                <div id="custom-toast" class="hidden absolute top-4 left-4 right-4 bg-green-500 text-white text-xs font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-between z-50 transition-opacity duration-300">
+                    <span id="toast-message">Tire pressurized successfully!</span>
+                    <button onclick="document.getElementById('custom-toast').classList.add('hidden')"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Footer bar -->
+    <div class="w-full max-w-7xl mx-auto px-6 py-6 text-center text-xs text-slate-400 border-t border-border mt-auto">
+        <p>© 2026 Torque. Drive with Confidence. All rights reserved.</p>
+    </div>
+
+    <!-- ========== CORE SCRIPT LOGIC ========== -->
+    <script>
+        (function () {
+            const html = document.documentElement;
+            // Theme toggles
+            const themeBtn = document.getElementById('theme-toggle');
+            const applyTheme = (theme) => { 
+                html.setAttribute('data-theme', theme); 
+                localStorage.setItem('theme', theme); 
+                document.querySelectorAll('.light-icon').forEach(icon => icon.classList.toggle('hidden', theme === 'dark')); 
+                document.querySelectorAll('.dark-icon').forEach(icon => icon.classList.toggle('hidden', theme === 'light')); 
+            };
+            const initTheme = () => { 
+                const stored = localStorage.getItem('theme'); 
+                const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches; 
+                applyTheme(stored === 'dark' || (!stored && prefers) ? 'dark' : 'light'); 
+            };
+            const toggleTheme = () => { 
+                const cur = html.getAttribute('data-theme'); 
+                applyTheme(cur === 'light' ? 'dark' : 'light'); 
+            };
+            themeBtn?.addEventListener('click', toggleTheme);
+            initTheme();
+            
+            // RTL
+            const langBtn = document.getElementById('lang-icon');
+            const toggleRtl = () => { 
+                const isRtl = html.getAttribute('dir') === 'rtl'; 
+                html.setAttribute('dir', isRtl ? 'ltr' : 'rtl'); 
+                localStorage.setItem('dir', isRtl ? 'ltr' : 'rtl'); 
+            };
+            if (langBtn) langBtn.addEventListener('click', toggleRtl);
+            const savedDir = localStorage.getItem('dir') === 'rtl' ? 'rtl' : 'ltr'; 
+            html.setAttribute('dir', savedDir);
+            
+            // reveal animation
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => { 
+                entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }); 
+            }, { threshold: 0.15 });
+            reveals.forEach(r => observer.observe(r));
+        })();
+
+        // ========== GAME MECHANICS (INTERACTIVE TIRE PUMP) ==========
+        let currentPSI = 10;
+        const targetPSI = 32;
+        let isSuccess = false;
+
+        // Custom Sound Synth Setup (Synthesizer to generate pumping air sound)
+        let noiseSynth;
+        function playPumpSound() {
+            try {
+                if (!noiseSynth) {
+                    noiseSynth = new Tone.NoiseSynth({
+                        noise: { type: 'white' },
+                        envelope: { attack: 0.01, decay: 0.2, sustain: 0 }
+                    }).toDestination();
+                }
+                if (Tone.context.state !== 'running') {
+                    Tone.start();
+                }
+                noiseSynth.triggerAttackRelease("16n");
+            } catch (e) {
+                console.log("Audio context blocked by browser autoplay rules");
+            }
+        }
+
+        // Search Redirect Helper
+        function handleSearch() {
+            const query = document.getElementById('site-search').value.trim();
+            if (query) {
+                showToast(`Searching directory for "${query}"... Redirecting to Services.`);
+                setTimeout(() => {
+                    window.location.href = `service.html?search=${encodeURIComponent(query)}`;
+                }, 1500);
+            }
+        }
+
+        // Custom Toast Helper
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('custom-toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = message;
+            toast.className = `absolute top-4 left-4 right-4 text-white text-xs font-bold py-3 px-4 rounded-xl shadow-lg flex items-center justify-between z-50 transition-all duration-300 ${isError ? 'bg-red-500' : 'bg-green-600'}`;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Interactive calculation for tire state
+        function pumpTire() {
+            if (isSuccess) return;
+
+            playPumpSound();
+
+            const tireIllustration = document.getElementById('tire-illustration');
+            tireIllustration.classList.add('pump-active');
+            setTimeout(() => tireIllustration.classList.remove('pump-active'), 150);
+
+            currentPSI += 2;
+            if (currentPSI > targetPSI) currentPSI = targetPSI;
+
+            updateTireUI();
+
+            if (currentPSI === targetPSI) {
+                triggerSuccess();
+            }
+        }
+
+        function resetTire() {
+            currentPSI = 10;
+            isSuccess = false;
+            
+            const tireIllustration = document.getElementById('tire-illustration');
+            tireIllustration.classList.remove('rolling');
+            
+            const pumpBtn = document.getElementById('pump-air-btn');
+            pumpBtn.innerHTML = `<i class="fas fa-compress-alt"></i> Pump Air`;
+            pumpBtn.className = "w-full bg-accent hover:bg-accent-dark text-white rounded-2xl py-3 px-4 font-bold text-sm shadow flex items-center justify-center gap-2 active:scale-95 transition-transform";
+
+            updateTireUI();
+            showToast("Diagnostic pressure level reset to 10 PSI.");
+        }
+
+        function updateTireUI() {
+            document.getElementById('psi-number').innerText = currentPSI;
+            
+            const minScale = 0.7;
+            const maxScale = 1.0;
+            const percentage = (currentPSI - 10) / (targetPSI - 10);
+            const currentScale = minScale + (percentage * (maxScale - minScale));
+
+            const tireIllustration = document.getElementById('tire-illustration');
+            tireIllustration.style.transform = `scaleY(${currentScale})`;
+
+            const dashOffset = 276 - (percentage * 276);
+            document.getElementById('gauge-fill').style.strokeDashoffset = dashOffset;
+
+            const banner = document.getElementById('game-status-banner');
+            if (currentPSI < 20) {
+                banner.innerText = "⚠️ ALERT: High pressure deficiency! Do not drive.";
+                banner.className = "w-full py-2 px-3 mt-4 text-center rounded-xl text-xs font-semibold bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200/40 transition-colors duration-300";
+            } else if (currentPSI < 30) {
+                banner.innerText = "⚡ Warning: Low Pressure. Keep pumping to 32 PSI.";
+                banner.className = "w-full py-2 px-3 mt-4 text-center rounded-xl text-xs font-semibold bg-amber-100 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 border border-amber-200/40 transition-colors duration-300";
+            } else if (currentPSI < 32) {
+                banner.innerText = "Almost ready. Target optimal state: 32 PSI.";
+                banner.className = "w-full py-2 px-3 mt-4 text-center rounded-xl text-xs font-semibold bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-200/40 transition-colors duration-300";
+            } else {
+                banner.innerText = "✅ OPTIMUM PRESSURE ACQUIRED! You are ready to roll.";
+                banner.className = "w-full py-2 px-3 mt-4 text-center rounded-xl text-xs font-semibold bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 border border-green-200/40 transition-colors duration-300";
+            }
+        }
+
+        function triggerSuccess() {
+            isSuccess = true;
+            showToast("Success! Optimal Pressure reached. Let's roll!");
+
+            const tireIllustration = document.getElementById('tire-illustration');
+            tireIllustration.classList.add('rolling');
+
+            const pumpBtn = document.getElementById('pump-air-btn');
+            pumpBtn.innerHTML = `<i class="fas fa-play-circle animate-pulse"></i> Back to Main`;
+            pumpBtn.className = "w-full bg-green-600 hover:bg-green-700 text-white rounded-2xl py-3 px-4 font-bold text-sm shadow flex items-center justify-center gap-2 active:scale-95 transition-transform";
+            pumpBtn.onclick = function() {
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</body>
+
+</html>
