@@ -395,12 +395,12 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.95) 100%);
             border-radius: inherit;
             pointer-events: none;
             z-index: 1;
         }
-        .bg-overlay > * {
+        .bg-overlay > *:not(img) {
             position: relative;
             z-index: 2;
         }
@@ -435,11 +435,11 @@
                         <a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="nav-link">Services</a>
-                <a href="tire.html" class="nav-link">Tire Installation</a>
-                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="about.html" class="nav-link">About Us</a>
+                <a href="service.html" class="nav-link">Services</a>
+                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
+                <a href="tire.html" class="nav-link">Tire Installation</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <div class="dropdown-wrapper">
                     <button class="nav-link dropdown-toggle inline-flex items-center gap-1">
@@ -453,18 +453,11 @@
                 </div>
             </div>
             <div class="hidden xl:flex items-center gap-4">
-                <div class="dropdown-wrapper" id="user-dropdown">
-                    <button class="dropdown-toggle text-sm font-medium inline-flex items-center gap-1">
-                        <i class="fa-regular fa-user-circle text-xl leading-none"></i><span>Account</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="login.html"><i class="fas fa-sign-in-alt mr-2"></i> Login</a>
-                        <a href="signup.html"><i class="fas fa-user-plus mr-2"></i> Signup</a>
-                    </div>
-                </div>
+                <a href="login.html" class="btn-outline px-5 py-2 text-sm font-medium"><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+                <a href="signup.html" class="btn-primary px-5 py-2 text-sm font-medium"><i class="fas fa-user-plus mr-1"></i> Signup</a>
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-accent/10"><i
                         class="fas fa-moon light-icon"></i><i class="fas fa-sun dark-icon hidden"></i></button>
-                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-globe"></i></button>
+                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-exchange-alt"></i></button>
             </div>
             <div class="xl:hidden flex items-center gap-3">
                 <button id="mobile-menu-open"><i class="fas fa-bars text-2xl"></i></button>
@@ -487,11 +480,11 @@
                         <a href="index.html" class="text-accent font-medium">Home 1</a><a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="py-2 font-medium">Services</a>
-                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
-                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
-                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="about.html" class="py-2 font-medium">About Us</a>
+                <a href="service.html" class="py-2 font-medium">Services</a>
+                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
+                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
+                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="contact.html" class="py-2 font-medium">Contact</a>
                 <div><button id="mobile-dashboard-toggle"
                         class="flex w-full justify-between items-center py-2 font-medium">Dashboard <i
@@ -528,7 +521,7 @@
             </h1>
             <p class="text-secondary text-lg mt-4 max-w-2xl mx-auto">Puncture repairs, sidewall damage assessment, spare tire installation, and emergency towing coordination — wherever you are, whenever you need us.</p>
             <div class="flex flex-wrap gap-4 mt-8">
-                <button class="btn-primary px-8 py-3 text-base shadow-lg"><i class="fas fa-phone-alt mr-2"></i> Call (800) 555-ROLL</button>
+                <button class="btn-primary px-8 py-3 text-base shadow-lg"><i class="fas fa-phone mr-2"></i> Call (800) 555-ROLL</button>
                 <button class="btn-outline px-7 py-3"><i class="fab fa-whatsapp mr-2"></i> WhatsApp Emergency</button>
             </div>
             <div class="flex gap-6 mt-8 text-sm">
@@ -551,46 +544,46 @@
 <section class="py-16 bg-[var(--hover-bg)]/30">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-screwdriver-wrench text-accent mr-2"></i> Flat Repair <span class="text-accent">Services</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium">Flat Repair <span class="text-accent">Services</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
             <p class="text-secondary mt-3 max-w-2xl mx-auto">We handle every type of tire emergency — fast, safe, and affordable</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             <!-- Card 1 -->
-            <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition"><i class="fas fa-car-burst text-3xl text-accent"></i></div>
-                    <h3 class="font-medium text-lg">Puncture Repair</h3>
-                    <p class="text-secondary text-sm mt-2">Plug & patch combo for nail/screw holes up to 1/4 inch</p>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/tire-repair-service.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Puncture Repair">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Puncture Repair</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">Plug & patch combo for nail/screw holes up to 1/4 inch</p>
+                    <button class="btn-primary px-5 py-2.5 text-sm"><i class="fas fa-tools mr-1"></i> Book Repair</button>
                 </div>
-                <span class="inline-block mt-3 text-accent font-medium text-sm">From $35</span>
             </div>
             <!-- Card 2 -->
-            <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition"><i class="fas fa-wrench text-3xl text-accent"></i></div>
-                    <h3 class="font-medium text-lg">Spare Installation</h3>
-                    <p class="text-secondary text-sm mt-2">Mount your spare tire and check pressure</p>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/tire-mounting.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Spare Installation">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Spare Installation</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">Mount your spare tire and check pressure</p>
+                    <button class="bg-black/60 hover:bg-white text-white hover:text-black border border-white/40 px-5 py-2.5 text-sm rounded-full transition-all duration-300">Learn More</button>
                 </div>
-                <span class="inline-block mt-3 text-accent font-medium text-sm">From $29</span>
             </div>
             <!-- Card 3 -->
-            <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition"><i class="fas fa-microchip text-3xl text-accent"></i></div>
-                    <h3 class="font-medium text-lg">Tire Sealant</h3>
-                    <p class="text-secondary text-sm mt-2">Temporary fix for minor punctures to get you home</p>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/flat-repair-hero.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tire Sealant">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Tire Sealant</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">Temporary fix for minor punctures to get you home</p>
+                    <button class="bg-black/60 hover:bg-white text-white hover:text-black border border-white/40 px-5 py-2.5 text-sm rounded-full transition-all duration-300">Learn More</button>
                 </div>
-                <span class="inline-block mt-3 text-accent font-medium text-sm">From $25</span>
             </div>
             <!-- Card 4 -->
-            <div class="bg-card rounded-2xl p-5 border border-border hover:shadow-xl transition group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition"><i class="fas fa-truck-ramp-box text-3xl text-accent"></i></div>
-                    <h3 class="font-medium text-lg">Towing Coordination</h3>
-                    <p class="text-secondary text-sm mt-2">We arrange & dispatch trusted tow partner if needed</p>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/mobile-service-van-alt.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Towing Coordination">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Towing Coordination</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">We arrange & dispatch trusted tow partner if needed</p>
+                    <button class="bg-black/60 hover:bg-white text-white hover:text-black border border-white/40 px-5 py-2.5 text-sm rounded-full transition-all duration-300">Call for quote</button>
                 </div>
-                <span class="inline-block mt-3 text-accent font-medium text-sm">Call for quote</span>
             </div>
         </div>
     </div>
@@ -610,10 +603,10 @@
             <div class="mt-6 bg-accent/5 rounded-xl p-4"><p class="text-sm"><i class="fas fa-shield-alt text-accent mr-2"></i> <span class="font-medium">Our Promise:</span> We'll never recommend unnecessary replacement. Free inspection before any work.</p></div>
         </div>
         <div class="grid grid-cols-2 gap-4 reveal">
-            <img src="assets/tire-repair-service-alt.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover" alt="tire puncture">
-            <img src="assets/fd.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover mt-6" alt="sidewall damage">
-            <img src="assets/tire-repair-service.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover" alt="tire repair">
-            <img src="assets/mobile-service-van.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover -mt-6" alt="new tire">
+            <img src="assets/tire-technician.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover" alt="tire puncture">
+            <img src="assets/a1.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover mt-6" alt="sports car">
+            <img src="assets/tire-crossclimate.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover" alt="tire thread">
+            <img src="assets/team-member-4.jpg" class="rounded-2xl shadow-lg border border-border h-44 w-full object-cover -mt-6" alt="technician inspecting">
         </div>
     </div>
 </section>
@@ -622,7 +615,7 @@
 <section class="py-16 bg-accent/5">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal mb-10">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-map-pin text-accent mr-2"></i> 24/7 Coverage <span class="text-accent">Area</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium">24/7 Coverage <span class="text-accent">Area</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
             <p class="text-secondary mt-3 max-w-2xl mx-auto">We're everywhere you need us — day or night, rain or shine</p>
         </div>
@@ -680,7 +673,7 @@
 <section class="py-16 max-w-7xl mx-auto px-5">
     <div class="grid lg:grid-cols-2 gap-10">
         <div class="bg-card rounded-2xl p-8 border border-border reveal">
-            <h3 class="text-2xl font-medium mb-2"><i class="fas fa-triangle-exclamation text-accent mr-2"></i> Request Emergency Flat Repair</h3>
+            <h3 class="text-2xl font-medium mb-2">Request Emergency Flat Repair</h3>
             <p class="text-secondary text-sm mb-5">Fill out this form and a dispatcher will call you within 2 minutes</p>
             <form class="space-y-4" onsubmit="event.preventDefault(); alert('Emergency request sent! Dispatcher calling now.');">
                 <input type="text" placeholder="Your full name" class="w-full p-3 rounded-xl border border-border bg-card" required>
@@ -693,7 +686,7 @@
                 <textarea placeholder="Additional details (location, vehicle color, etc.)" rows="3" class="w-full p-3 rounded-xl border border-border bg-card"></textarea>
                 <div class="flex gap-3">
                     <button type="submit" class="flex-1 btn-primary py-3 rounded-xl font-medium"><i class="fas fa-paper-plane mr-2"></i> Send Emergency Request</button>
-                    <button type="button" class="btn-outline px-5 py-3 rounded-xl" onclick="window.location.href='tel:8005557655'"><i class="fas fa-phone-alt"></i></button>
+                    <button type="button" class="btn-outline px-5 py-3 rounded-xl" onclick="window.location.href='tel:8005557655'"><i class="fas fa-phone"></i></button>
                 </div>
                 <p class="text-center text-xs text-secondary mt-3"><i class="fas fa-lock text-accent"></i> Your location is encrypted. Dispatched within 30 seconds.</p>
             </form>
@@ -744,7 +737,7 @@
                     directly to your location.
                 </p>
                 <div class="mt-4 space-y-2 text-xs text-slate-300">
-                    <p class="flex items-center gap-2"><i class="fas fa-phone-alt text-accent"></i> (800) 555-ROLL</p>
+                    <p class="flex items-center gap-2"><i class="fas fa-phone text-accent"></i> (800) 555-ROLL</p>
                     <p class="flex items-center gap-2"><i class="far fa-clock text-accent"></i> 24 Hours / 7 Days</p>
                 </div>
                 <div class="flex gap-2.5 mt-5">
@@ -989,9 +982,22 @@
         // MOCK support for home2 version (just stays same design but content identical, but we respect current page path)
         if (window.location.pathname.includes('home2.html')) { document.title = "TorqueSwift | Performance Pro Edition"; }
     </script>
+    <!-- Floating Call Button -->
+    <a href="tel:8005557655" class="fixed bottom-6 right-6 bg-accent text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-[90] hover:bg-accent-dark transition-transform hover:scale-110 flex md:hidden" style="box-shadow: 0 4px 14px rgba(224, 90, 42, 0.5);">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

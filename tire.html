@@ -395,12 +395,12 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.95) 100%);
             border-radius: inherit;
             pointer-events: none;
             z-index: 1;
         }
-        .bg-overlay > * {
+        .bg-overlay > *:not(img) {
             position: relative;
             z-index: 2;
         }
@@ -435,11 +435,11 @@
                         <a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="nav-link">Services</a>
-                <a href="tire.html" class="nav-link">Tire Installation</a>
-                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="about.html" class="nav-link">About Us</a>
+                <a href="service.html" class="nav-link">Services</a>
+                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
+                <a href="tire.html" class="nav-link">Tire Installation</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <div class="dropdown-wrapper">
                     <button class="nav-link dropdown-toggle inline-flex items-center gap-1">
@@ -453,18 +453,11 @@
                 </div>
             </div>
             <div class="hidden xl:flex items-center gap-4">
-                <div class="dropdown-wrapper" id="user-dropdown">
-                    <button class="dropdown-toggle text-sm font-medium inline-flex items-center gap-1">
-                        <i class="fa-regular fa-user-circle text-xl leading-none"></i><span>Account</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="login.html"><i class="fas fa-sign-in-alt mr-2"></i> Login</a>
-                        <a href="signup.html"><i class="fas fa-user-plus mr-2"></i> Signup</a>
-                    </div>
-                </div>
+                <a href="login.html" class="btn-outline px-5 py-2 text-sm font-medium"><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+                <a href="signup.html" class="btn-primary px-5 py-2 text-sm font-medium"><i class="fas fa-user-plus mr-1"></i> Signup</a>
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-accent/10"><i
                         class="fas fa-moon light-icon"></i><i class="fas fa-sun dark-icon hidden"></i></button>
-                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-globe"></i></button>
+                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-exchange-alt"></i></button>
             </div>
             <div class="xl:hidden flex items-center gap-3">
                 <button id="mobile-menu-open"><i class="fas fa-bars text-2xl"></i></button>
@@ -487,11 +480,11 @@
                         <a href="index.html" class="text-accent font-medium">Home 1</a><a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="py-2 font-medium">Services</a>
-                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
-                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
-                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="about.html" class="py-2 font-medium">About Us</a>
+                <a href="service.html" class="py-2 font-medium">Services</a>
+                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
+                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
+                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="contact.html" class="py-2 font-medium">Contact</a>
                 <div><button id="mobile-dashboard-toggle"
                         class="flex w-full justify-between items-center py-2 font-medium">Dashboard <i
@@ -538,7 +531,7 @@
             </div>
         </div>
         <div class="relative reveal">
-            <img src="/assets/fd.jpg" 
+            <img src="assets/tire-technician.jpg" 
                  class="rounded-3xl shadow-2xl border border-border w-full h-[450px] object-cover" alt="tire installation service">
             <div class="absolute -bottom-4 -right-4 bg-card rounded-xl p-3 shadow-lg border border-border">
                 <div class="flex items-center gap-2"><i class="fas fa-clock text-accent"></i><span class="font-medium">45 min avg</span><span class="text-xs text-secondary">install time</span></div>
@@ -551,39 +544,54 @@
 <section class="py-16 bg-[var(--hover-bg)]/30">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-chalkboard-user text-accent mr-2"></i> Our <span class="text-accent">Installation Process</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium">Our <span class="text-accent">Installation Process</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
             <p class="text-secondary mt-3 max-w-2xl mx-auto">Professional, thorough, and efficient — we don't cut corners</p>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            <div class="bg-card rounded-2xl p-5 border border-border text-center hover:shadow-lg transition">
-                <div class="w-16 h-16 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-3"><i class="fas fa-search text-2xl text-accent"></i></div>
-                <h3 class="font-medium">1. Inspection</h3>
-                <p class="text-secondary text-xs">Tread depth, sidewall condition, and existing tire assessment</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            <!-- Process 1 -->
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/team-member-4.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Inspection">
+                <div class="p-6 relative z-10">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center mb-3 text-white font-bold">1</div>
+                    <h3 class="text-xl font-medium mb-1 text-white drop-shadow-md">Inspection</h3>
+                    <p class="text-white/90 text-sm drop-shadow-md">Tread depth, sidewall condition, and existing tire assessment.</p>
+                </div>
             </div>
-            <div class="bg-card rounded-2xl p-5 border border-border text-center hover:shadow-lg transition">
-                <div class="w-16 h-16 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-3"><i class="fas fa-wrench text-2xl text-accent"></i></div>
-                <h3 class="font-medium">2. Demounting</h3>
-                <p class="text-secondary text-xs">Careful removal of old tires from wheels</p>
+            <!-- Process 2 -->
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/tire-repair-service.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Demounting">
+                <div class="p-6 relative z-10">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center mb-3 text-white font-bold">2</div>
+                    <h3 class="text-xl font-medium mb-1 text-white drop-shadow-md">Demounting</h3>
+                    <p class="text-white/90 text-sm drop-shadow-md">Careful removal of old tires from wheels to protect your rims.</p>
+                </div>
             </div>
-            <div class="bg-card rounded-2xl p-5 border border-border text-center hover:shadow-lg transition">
-                <div class="w-16 h-16 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-3"><i class="fas fa-chart-line text-2xl text-accent"></i></div>
-                <h3 class="font-medium">3. Mount & Balance</h3>
-                <p class="text-secondary text-xs">Precision mounting with computer spin balancing</p>
+            <!-- Process 3 -->
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/tire-mounting.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mount & Balance">
+                <div class="p-6 relative z-10">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center mb-3 text-white font-bold">3</div>
+                    <h3 class="text-xl font-medium mb-1 text-white drop-shadow-md">Mount & Balance</h3>
+                    <p class="text-white/90 text-sm drop-shadow-md">Precision mounting with computer spin balancing for a smooth ride.</p>
+                </div>
             </div>
-            <div class="bg-card rounded-2xl p-5 border border-border text-center hover:shadow-lg transition">
-                <div class="w-16 h-16 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-3"><i class="fas fa-clipboard-list text-2xl text-accent"></i></div>
-                <h3 class="font-medium">4. Final Check</h3>
-                <p class="text-secondary text-xs">Torque verification, TPMS reset, road test</p>
+            <!-- Process 4 -->
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/tire-technician.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Final Check">
+                <div class="p-6 relative z-10">
+                    <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center mb-3 text-white font-bold">4</div>
+                    <h3 class="text-xl font-medium mb-1 text-white drop-shadow-md">Final Check</h3>
+                    <p class="text-white/90 text-sm drop-shadow-md">Torque verification, TPMS reset, and comprehensive road test.</p>
+                </div>
             </div>
-        </div>
-    </div>
+        </div></div>
 </section>
 
 <!-- ========== SECTION 3: PRICING & PACKAGES ========== -->
 <section class="py-16 max-w-7xl mx-auto px-5">
     <div class="text-center reveal mb-10">
-        <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-dollar-sign text-accent mr-2"></i> Transparent <span class="text-accent">Pricing</span></h2>
+        <h2 class="text-3xl md:text-4xl font-medium">Transparent <span class="text-accent">Pricing</span></h2>
         <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
         <p class="text-secondary mt-3 max-w-2xl mx-auto">No hidden fees — what you see is what you pay</p>
     </div>
@@ -636,12 +644,12 @@
 <section class="py-16 bg-accent/5">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal mb-10">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-chart-simple text-accent mr-2"></i> Compare <span class="text-accent">Tire Options</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium">Compare <span class="text-accent">Tire Options</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
             <p class="text-secondary mt-3 max-w-2xl mx-auto">We install all major brands — compare features before booking</p>
         </div>
         <div class="overflow-x-auto reveal">
-            <table class="w-full bg-card rounded-2xl border border-border">
+            <table class="w-full min-w-max bg-card rounded-2xl border border-border whitespace-nowrap">
                 <thead class="bg-accent/5">
                     <tr class="border-b border-border">
                         <th class="p-4 text-left">Tire Model</th>
@@ -701,7 +709,7 @@
     <div class="max-w-7xl mx-auto px-5">
         <div class="grid lg:grid-cols-2 gap-10">
             <div class="bg-card rounded-2xl p-8 border border-border reveal">
-                <h3 class="text-2xl font-medium mb-2"><i class="fas fa-calendar-alt text-accent mr-2"></i> Book Installation</h3>
+                <h3 class="text-2xl font-medium mb-2">Book Installation</h3>
                 <p class="text-secondary text-sm mb-5">Fill out the form and we'll confirm within 15 minutes</p>
                 <form class="space-y-4" onsubmit="event.preventDefault(); alert('Booking request sent! We\'ll contact you shortly.');">
                     <input type="text" placeholder="Full name" class="w-full p-3 rounded-xl border border-border bg-card" required>
@@ -743,7 +751,7 @@
         </div>
         <!-- FAQ Accordion -->
         <div class="mt-10 bg-card rounded-2xl p-6 border border-border reveal">
-            <h3 class="text-xl font-medium mb-4 text-center"><i class="fas fa-question-circle text-accent mr-2"></i> Installation FAQs</h3>
+            <h3 class="text-xl font-medium mb-4 text-center">Installation FAQs</h3>
             <div class="grid md:grid-cols-2 gap-4">
                 <div><button class="faq-toggle2 flex justify-between items-center w-full text-left p-3 bg-[var(--hover-bg)] rounded-lg">How long does installation take? <i class="fas fa-chevron-down text-accent"></i></button><div class="faq-answer2 hidden p-3 text-secondary text-sm">A full set of 4 tires typically takes 45-60 minutes. Single tires take about 20-30 minutes.</div></div>
                 <div><button class="faq-toggle2 flex justify-between items-center w-full text-left p-3 bg-[var(--hover-bg)] rounded-lg">Do I need to be present? <i class="fas fa-chevron-down text-accent"></i></button><div class="faq-answer2 hidden p-3 text-secondary text-sm">Yes, someone needs to be available to provide keys and approve the final work.</div></div>
@@ -778,7 +786,7 @@
                     directly to your location.
                 </p>
                 <div class="mt-4 space-y-2 text-xs text-slate-300">
-                    <p class="flex items-center gap-2"><i class="fas fa-phone-alt text-accent"></i> (800) 555-ROLL</p>
+                    <p class="flex items-center gap-2"><i class="fas fa-phone text-accent"></i> (800) 555-ROLL</p>
                     <p class="flex items-center gap-2"><i class="far fa-clock text-accent"></i> 24 Hours / 7 Days</p>
                 </div>
                 <div class="flex gap-2.5 mt-5">
@@ -1023,9 +1031,22 @@
         // MOCK support for home2 version (just stays same design but content identical, but we respect current page path)
         if (window.location.pathname.includes('home2.html')) { document.title = "TorqueSwift | Performance Pro Edition"; }
     </script>
+    <!-- Floating Call Button -->
+    <a href="tel:8005557655" class="fixed bottom-6 right-6 bg-accent text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-[90] hover:bg-accent-dark transition-transform hover:scale-110 flex md:hidden" style="box-shadow: 0 4px 14px rgba(224, 90, 42, 0.5);">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

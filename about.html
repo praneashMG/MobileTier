@@ -395,12 +395,12 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.95) 100%);
             border-radius: inherit;
             pointer-events: none;
             z-index: 1;
         }
-        .bg-overlay > * {
+        .bg-overlay > *:not(img) {
             position: relative;
             z-index: 2;
         }
@@ -435,11 +435,11 @@
                         <a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="nav-link">Services</a>
-                <a href="tire.html" class="nav-link">Tire Installation</a>
-                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="about.html" class="nav-link">About Us</a>
+                <a href="service.html" class="nav-link">Services</a>
+                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
+                <a href="tire.html" class="nav-link">Tire Installation</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <div class="dropdown-wrapper">
                     <button class="nav-link dropdown-toggle inline-flex items-center gap-1">
@@ -453,18 +453,11 @@
                 </div>
             </div>
             <div class="hidden xl:flex items-center gap-4">
-                <div class="dropdown-wrapper" id="user-dropdown">
-                    <button class="dropdown-toggle text-sm font-medium inline-flex items-center gap-1">
-                        <i class="fa-regular fa-user-circle text-xl leading-none"></i><span>Account</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="login.html"><i class="fas fa-sign-in-alt mr-2"></i> Login</a>
-                        <a href="signup.html"><i class="fas fa-user-plus mr-2"></i> Signup</a>
-                    </div>
-                </div>
+                <a href="login.html" class="btn-outline px-5 py-2 text-sm font-medium"><i class="fas fa-sign-in-alt mr-1"></i> Login</a>
+                <a href="signup.html" class="btn-primary px-5 py-2 text-sm font-medium"><i class="fas fa-user-plus mr-1"></i> Signup</a>
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-accent/10"><i
                         class="fas fa-moon light-icon"></i><i class="fas fa-sun dark-icon hidden"></i></button>
-                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-globe"></i></button>
+                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-exchange-alt"></i></button>
             </div>
             <div class="xl:hidden flex items-center gap-3">
                 <button id="mobile-menu-open"><i class="fas fa-bars text-2xl"></i></button>
@@ -487,11 +480,11 @@
                         <a href="index.html" class="text-accent font-medium">Home 1</a><a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="py-2 font-medium">Services</a>
-                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
-                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
-                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="about.html" class="py-2 font-medium">About Us</a>
+                <a href="service.html" class="py-2 font-medium">Services</a>
+                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
+                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
+                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="contact.html" class="py-2 font-medium">Contact</a>
                 <div><button id="mobile-dashboard-toggle"
                         class="flex w-full justify-between items-center py-2 font-medium">Dashboard <i
@@ -551,7 +544,7 @@
 <section class="py-16 bg-[var(--hover-bg)]/30">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal mb-12">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-heart text-accent mr-2"></i> Our <span class="text-accent">Core Values</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium">Our <span class="text-accent">Core Values</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
             <p class="text-secondary mt-3 max-w-2xl mx-auto">The principles that drive everything we do</p>
         </div>
@@ -583,7 +576,7 @@
 <!-- ========== SECTION 3: OUR JOURNEY TIMELINE ========== -->
 <section class="py-16 max-w-7xl mx-auto px-5">
     <div class="text-center reveal mb-12">
-        <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-road text-accent mr-2"></i> Our <span class="text-accent">Journey</span></h2>
+        <h2 class="text-3xl md:text-4xl font-medium">Our <span class="text-accent">Journey</span></h2>
         <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
         <p class="text-secondary mt-3 max-w-2xl mx-auto">From a single van to a fleet serving thousands</p>
     </div>
@@ -622,7 +615,7 @@
 <section class="py-16 bg-accent/5">
     <div class="max-w-7xl mx-auto px-5">
         <div class="text-center reveal mb-12">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-user-tie text-accent mr-2"></i> Meet The <span class="text-accent">Team</span></h2>
+            <h2 class="text-3xl md:text-4xl font-medium">Meet The <span class="text-accent">Team</span></h2>
             <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
             <p class="text-secondary mt-3 max-w-2xl mx-auto">The experts behind every successful service call</p>
         </div>
@@ -701,7 +694,7 @@
                     directly to your location.
                 </p>
                 <div class="mt-4 space-y-2 text-xs text-slate-300">
-                    <p class="flex items-center gap-2"><i class="fas fa-phone-alt text-accent"></i> (800) 555-ROLL</p>
+                    <p class="flex items-center gap-2"><i class="fas fa-phone text-accent"></i> (800) 555-ROLL</p>
                     <p class="flex items-center gap-2"><i class="far fa-clock text-accent"></i> 24 Hours / 7 Days</p>
                 </div>
                 <div class="flex gap-2.5 mt-5">
@@ -946,9 +939,21 @@
         // MOCK support for home2 version (just stays same design but content identical, but we respect current page path)
         if (window.location.pathname.includes('home2.html')) { document.title = "TorqueSwift | Performance Pro Edition"; }
     </script>
+    <!-- Floating Call Button -->
+    <a href="tel:8005557655" class="fixed bottom-6 right-6 bg-accent text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-[90] hover:bg-accent-dark transition-transform hover:scale-110 flex md:hidden" style="box-shadow: 0 4px 14px rgba(224, 90, 42, 0.5);">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
 
 
 

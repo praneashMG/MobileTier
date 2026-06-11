@@ -284,24 +284,29 @@
         }
 
         /* RTL support for navigation spacing, underlines and menus */
-        html[dir="rtl"] #main-header .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+        html[dir="rtl"] #main-header .space-x-8> :not([hidden])~ :not([hidden]) {
             margin-right: 2rem !important;
             margin-left: 0 !important;
         }
+
         html[dir="rtl"] .dropdown-menu {
             left: auto;
             right: 0;
         }
+
         html[dir="rtl"] .dropdown-menu a:hover {
             transform: translateX(-4px);
         }
+
         html[dir="rtl"] .hover\:translate-x-1:hover {
             transform: translateX(-0.25rem) !important;
         }
+
         html[dir="rtl"] .nav-link::after {
             left: auto;
             right: 0;
         }
+
         html[dir="rtl"] #mobile-drawer nav a:not(.rounded-full)::after {
             left: auto;
             right: 0;
@@ -309,27 +314,45 @@
     </style>
     <style id="typography-alignment">
         /* Typography Alignment & Consistency Overrides */
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-weight: 500 !important;
         }
+
         /* Keep paragraph weights 400-500 */
-        p:not(.font-medium), div.text-secondary {
+        p:not(.font-medium),
+        div.text-secondary {
             font-weight: 400 !important;
         }
+
         /* Ensure proper text alignment inside cards */
-        .tire-card, .bg-card, .card {
+        .tire-card,
+        .bg-card,
+        .card {
             text-align: left !important;
         }
-        .text-center .tire-card, .text-center .bg-card {
+
+        .text-center .tire-card,
+        .text-center .bg-card {
             text-align: left !important;
         }
+
         /* Reduce overly wide paragraphs inside containers for readability */
-        .container p, section > div > p.text-secondary {
+        .container p,
+        section>div>p.text-secondary {
             max-width: 65ch;
             margin-left: auto;
             margin-right: auto;
         }
-        .tire-card p, .bg-card p, .card p, .text-left p {
+
+        .tire-card p,
+        .bg-card p,
+        .card p,
+        .text-left p {
             margin-left: 0 !important;
             margin-right: 0 !important;
             max-width: none !important;
@@ -341,43 +364,53 @@
             box-shadow: 0 4px 12px 0 rgba(224, 90, 42, 0.4);
             color: #ffffff !important;
         }
+
         html[data-theme='dark'] .btn-primary {
             box-shadow: 0 4px 12px 0 rgba(249, 115, 22, 0.3);
-            color: #0f172a !important; /* High contrast in dark mode */
+            color: #0f172a !important;
+            /* High contrast in dark mode */
             font-weight: 600 !important;
         }
-        
+
         /* Hover Color Consistency & Contrast */
         .btn-primary:hover {
             background-color: var(--accent-dark) !important;
             transform: translateY(-1px) scale(1.02);
             box-shadow: 0 6px 16px 0 rgba(224, 90, 42, 0.5);
         }
+
         html[data-theme='dark'] .btn-primary:hover {
             box-shadow: 0 6px 16px 0 rgba(249, 115, 22, 0.4);
         }
-        
+
         .btn-outline {
             color: var(--accent) !important;
             border-color: var(--accent) !important;
         }
+
         .btn-outline:hover {
             background-color: var(--accent) !important;
             color: #ffffff !important;
             transform: translateY(-1px);
         }
+
         html[data-theme='dark'] .btn-outline:hover {
-            color: #0f172a !important; /* High contrast in dark mode */
+            color: #0f172a !important;
+            /* High contrast in dark mode */
         }
 
         /* Align CTA buttons consistently inside cards/grids */
-        .tire-card, .dashboard-card {
+        .tire-card,
+        .dashboard-card {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
         }
-        .tire-card > div:last-child, .dashboard-card > div:last-child, .dashboard-card > button:last-child {
+
+        .tire-card>div:last-child,
+        .dashboard-card>div:last-child,
+        .dashboard-card>button:last-child {
             margin-top: auto;
         }
     </style>
@@ -386,21 +419,23 @@
         img:not([src*="fav.png"]):not(.object-contain) {
             object-fit: cover !important;
         }
-        
+
         /* Ensure proper background overlays for readability (apply to containers if needed) */
         .bg-overlay {
             position: relative;
         }
+
         .bg-overlay::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.95) 100%);
             border-radius: inherit;
             pointer-events: none;
             z-index: 1;
         }
-        .bg-overlay > * {
+
+        .bg-overlay > *:not(img) {
             position: relative;
             z-index: 2;
         }
@@ -422,7 +457,8 @@
     <header class="fixed top-0 left-0 w-full z-50 pt-3" id="main-header">
         <nav
             class="max-w-7xl mx-auto px-5 py-3 rounded-2xl flex items-center justify-between backdrop-blur-sm border border-border">
-            <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-accent"
+                style="font-weight: 700 !important;">Torque</a>
             <!-- Desktop Center Nav -->
             <div class="hidden xl:flex items-center space-x-8 rtl:space-x-reverse text-sm font-medium">
                 <div class="dropdown-wrapper">
@@ -435,11 +471,11 @@
                         <a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="nav-link">Services</a>
-                <a href="tire.html" class="nav-link">Tire Installation</a>
-                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
-                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="about.html" class="nav-link">About Us</a>
+                <a href="service.html" class="nav-link">Services</a>
+                <a href="flatrepair.html" class="nav-link">Flat Repair</a>
+                <a href="tire.html" class="nav-link">Tire Installation</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <div class="dropdown-wrapper">
                     <button class="nav-link dropdown-toggle inline-flex items-center gap-1">
@@ -453,18 +489,14 @@
                 </div>
             </div>
             <div class="hidden xl:flex items-center gap-4">
-                <div class="dropdown-wrapper" id="user-dropdown">
-                    <button class="dropdown-toggle text-sm font-medium inline-flex items-center gap-1">
-                        <i class="fa-regular fa-user-circle text-xl leading-none"></i><span>Account</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="login.html"><i class="fas fa-sign-in-alt mr-2"></i> Login</a>
-                        <a href="signup.html"><i class="fas fa-user-plus mr-2"></i> Signup</a>
-                    </div>
-                </div>
+                <a href="login.html" class="btn-outline px-5 py-2 text-sm font-medium"><i
+                        class="fas fa-sign-in-alt mr-1"></i> Login</a>
+                <a href="signup.html" class="btn-primary px-5 py-2 text-sm font-medium"><i
+                        class="fas fa-user-plus mr-1"></i> Signup</a>
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-accent/10"><i
                         class="fas fa-moon light-icon"></i><i class="fas fa-sun dark-icon hidden"></i></button>
-                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i class="fas fa-globe"></i></button>
+                <button id="lang-icon" class="p-2 rounded-full hover:bg-accent/10"><i
+                        class="fas fa-exchange-alt"></i></button>
             </div>
             <div class="xl:hidden flex items-center gap-3">
                 <button id="mobile-menu-open"><i class="fas fa-bars text-2xl"></i></button>
@@ -477,8 +509,10 @@
         <div id="drawer-backdrop" class="absolute inset-0 bg-black/50 opacity-0 transition pointer-events-none"></div>
         <div id="drawer-panel"
             class="absolute top-0 left-0 w-80 h-full bg-card shadow-2xl transform -translate-x-full transition-transform duration-300 p-6 overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-border pb-4"><a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;; color: var(--accent) !important;">Torque</a><button id="drawer-close"><i
-                        class="fas fa-times text-xl"></i></button></div>
+            <div class="flex justify-between items-center border-b border-border pb-4"><a href="index.html"
+                    class="text-2xl font-bold tracking-tight text-accent"
+                    style="font-weight: 700 !important;; color: var(--accent) !important;">Torque</a><button
+                    id="drawer-close"><i class="fas fa-times text-xl"></i></button></div>
             <nav class="flex flex-col gap-3 mt-6">
                 <div><button id="mobile-home-toggle"
                         class="flex w-full justify-between items-center py-2 font-medium text-accent">Home <i
@@ -487,11 +521,11 @@
                         <a href="index.html" class="text-accent font-medium">Home 1</a><a href="home2.html">Home 2</a>
                     </div>
                 </div>
-                <a href="service.html" class="py-2 font-medium">Services</a>
-                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
-                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
-                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="about.html" class="py-2 font-medium">About Us</a>
+                <a href="service.html" class="py-2 font-medium">Services</a>
+                <a href="flatrepair.html" class="py-2 font-medium">Flat Repair</a>
+                <a href="tire.html" class="py-2 font-medium">Tire Installation</a>
+                <a href="pricing.html" class="py-2 font-medium">Pricing</a>
                 <a href="contact.html" class="py-2 font-medium">Contact</a>
                 <div><button id="mobile-dashboard-toggle"
                         class="flex w-full justify-between items-center py-2 font-medium">Dashboard <i
@@ -516,267 +550,363 @@
     </div>
 
     <main class="pt-28">
-<!-- ========== SECTION 1: SERVICE HERO ========== -->
-<section class="relative overflow-hidden pb-12 md:pb-16 lg:pb-20">
-    <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-        <div class="reveal">
-            <span class="inline-block bg-accent/10 text-accent px-4 py-1 rounded-full text-xs font-medium mb-4">
-                <i class="fas fa-wrench mr-1"></i> OUR SERVICES • PROFESSIONAL CARE
-            </span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight break-words">
-               Extensive  <span class="text-accent">Tire Care</span> Solutions
-            </h1>
-            <p class="text-secondary text-base md:text-lg mt-4">From emergency flat repairs to full fleet management — we bring the garage to your doorstep with certified technicians and state-of-the-art mobile equipment.</p>
-            <div class="flex flex-wrap gap-4 mt-6">
-                <button class="btn-primary px-6 py-3 text-base shadow-lg"><i class="fas fa-phone-alt mr-2"></i> 24/7 Emergency Dispatch</button>
-                <button class="btn-outline px-6 py-3 text-base"><i class="fas fa-file-alt mr-2"></i> View Service Plans</button>
-            </div>
-            <div class="flex flex-wrap gap-4 mt-6 text-sm">
-                <span><i class="fas fa-check-circle text-accent mr-1"></i> 30-min response</span>
-                <span><i class="fas fa-shield-alt text-accent mr-1"></i> 24mo warranty</span>
-                <span><i class="fas fa-users text-accent mr-1"></i> 50+ certified techs</span>
-            </div>
-        </div>
-        <div class="relative reveal">
-            <img src="assets/tire-repair-service.jpg" 
-                 class="rounded-3xl shadow-2xl border border-border w-full h-[450px] object-cover" alt="mobile tire service technician">
-            <div class="absolute -bottom-4 -left-4 bg-card rounded-xl p-3 shadow-lg border border-border">
-                <div class="flex items-center gap-2"><i class="fas fa-star text-accent"></i><span class="font-medium">4.98 ★</span><span class="text-xs text-secondary">(2.5k+ services)</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ========== SECTION 2: SERVICE CATEGORIES ========== -->
-<section class="py-16 bg-[var(--hover-bg)]/30">
-    <div class="max-w-7xl mx-auto px-5">
-        <div class="text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-cogs text-accent mr-2"></i> What <span class="text-accent">We Offer</span></h2>
-            <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-            <p class="text-secondary mt-3 max-w-2xl mx-auto">Complete mobile tire solutions for every situation</p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-            <!-- Service 1 -->
-            <div class="bg-card rounded-2xl p-6 border border-border hover:shadow-xl transition-all group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition">
-                        <i class="fas fa-car-side text-3xl text-accent"></i>
+        <!-- ========== SECTION 1: SERVICE HERO ========== -->
+        <section class="relative overflow-hidden pb-12 md:pb-16 lg:pb-20">
+            <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="reveal">
+                    <span class="inline-block bg-accent/10 text-accent px-4 py-1 rounded-full text-xs font-medium mb-4">
+                        <i class="fas fa-wrench mr-1"></i> OUR SERVICES • PROFESSIONAL CARE
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight break-words">
+                        Extensive <span class="text-accent">Tire Care</span> Solutions
+                    </h1>
+                    <p class="text-secondary text-base md:text-lg mt-4">From emergency flat repairs to full fleet
+                        management — we bring the garage to your doorstep with certified technicians and
+                        state-of-the-art mobile equipment.</p>
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <button class="btn-primary px-6 py-3 text-base shadow-lg"><i class="fas fa-phone mr-2"></i>
+                            24/7 Emergency Dispatch</button>
+                        <button class="btn-outline px-6 py-3 text-base"><i class="fas fa-file-alt mr-2"></i> View
+                            Service Plans</button>
                     </div>
-                    <h3 class="text-xl font-medium mb-2">Mobile Installation</h3>
-                    <p class="text-secondary text-sm">Full set installation at your home or office. No waiting rooms, no towing.</p>
+                    <div class="flex flex-wrap gap-4 mt-6 text-sm">
+                        <span><i class="fas fa-check-circle text-accent mr-1"></i> 30-min response</span>
+                        <span><i class="fas fa-shield-alt text-accent mr-1"></i> 24mo warranty</span>
+                        <span><i class="fas fa-users text-accent mr-1"></i> 50+ certified techs</span>
+                    </div>
                 </div>
-                <span class="inline-block mt-4 text-accent text-sm font-medium">Starting $99 →</span>
+                <div class="relative reveal">
+                    <img src="assets/tire-repair-service-alt.jpg"
+                        class="rounded-3xl shadow-2xl border border-border w-full h-[450px] object-cover"
+                        alt="mobile tire service technician">
+                    <div class="absolute -bottom-4 -left-4 bg-card rounded-xl p-3 shadow-lg border border-border">
+                        <div class="flex items-center gap-2"><i class="fas fa-star text-accent"></i><span
+                                class="font-medium">4.98 ★</span><span class="text-xs text-secondary">(2.5k+
+                                services)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ========== SECTION 2: SERVICE CATEGORIES ========== -->
+        <section class="py-16 bg-[var(--hover-bg)]/30">
+            <div class="max-w-7xl mx-auto px-5">
+                <div class="text-center reveal">
+                    <h2 class="text-3xl md:text-4xl font-medium">What <span class="text-accent">We Offer</span></h2>
+                    <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
+                    <p class="text-secondary mt-3 max-w-2xl mx-auto">Complete mobile tire solutions for every situation
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+            <!-- Service 1 -->
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="https://s3.amazonaws.com/rnrtires.com/wp-content/uploads/2025/06/23162811/JSATires-373853-CarHandsJack-ImageA1.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Mobile Installation</h3>
+                    <p class="text-white/100 text-sm mb-5 max-w-sm">Full set installation at your home or office. No waiting rooms, no towing.</p>
+                    <button class="btn-primary px-5 py-2.5 text-sm"><i class="fas fa-tools mr-1"></i> Book Installation</button>
+                </div>
             </div>
             <!-- Service 2 -->
-            <div class="bg-card rounded-2xl p-6 border border-border hover:shadow-xl transition-all group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition">
-                        <i class="fas fa-screwdriver-wrench text-3xl text-accent"></i>
-                    </div>
-                    <h3 class="text-xl font-medium mb-2">Flat Tire Repair</h3>
-                    <p class="text-secondary text-sm">Puncture repairs, plug & patch, sidewall assessment — 24/7 emergency response.</p>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/tire-repair-service.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Flat Tire Repair</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">Puncture repairs, plug & patch, sidewall assessment — 24/7 emergency response.</p>
+                    <button class="btn-primary px-5 py-2.5 text-sm"><i class="fas fa-truck-fast mr-1"></i> Request Repair</button>
                 </div>
-                <span class="inline-block mt-4 text-accent text-sm font-medium">From $35 →</span>
             </div>
             <!-- Service 3 -->
-            <div class="bg-card rounded-2xl p-6 border border-border hover:shadow-xl transition-all group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition">
-                        <i class="fas fa-sync-alt text-3xl text-accent"></i>
-                    </div>
-                    <h3 class="text-xl font-medium mb-2">Rotation & Balance</h3>
-                    <p class="text-secondary text-sm">Extend tire life with precision balancing and rotation patterns.</p>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="https://i2.wp.com/static.wixstatic.com/media/7205c7_c32e29a4eafc4cc79daf583ec7d7af4b.jpg/v1/fit/w_2500,h_1330,al_c/7205c7_c32e29a4eafc4cc79daf583ec7d7af4b.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">Rotation & Balance</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">Extend tire life with precision balancing and rotation patterns.</p>
+                    <button class="bg-black/60 hover:bg-white text-white hover:text-black border border-white/40 rounded-full transition-all duration-300 px-5 py-2.5 text-sm">Learn More</button>
                 </div>
-                <span class="inline-block mt-4 text-accent text-sm font-medium">From $49 →</span>
             </div>
             <!-- Service 4 -->
-            <div class="bg-card rounded-2xl p-6 border border-border hover:shadow-xl transition-all group text-center flex flex-col justify-between h-full">
-                <div>
-                    <div class="w-20 h-20 mx-auto bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent/20 transition">
-                        <i class="fas fa-charging-station text-3xl text-accent"></i>
+            <div class="relative bg-overlay rounded-2xl overflow-hidden hover:shadow-2xl transition-all group h-72 flex flex-col justify-end text-left border border-border">
+                <img src="assets/mobile-service-van.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="p-6 relative z-10">
+                    <h3 class="text-2xl font-medium mb-2 text-white drop-shadow-md">TPMS Service</h3>
+                    <p class="text-white/90 text-sm mb-5 max-w-sm drop-shadow-md">Sensor replacement, reprogramming, and system diagnostics.</p>
+                    <button class="bg-black/60 hover:bg-white text-white hover:text-black border border-white/40 rounded-full transition-all duration-300 px-5 py-2.5 text-sm">Learn More</button>
+                </div>
+            </div>
+        </div>
+            </div>
+        </section>
+        <!-- ========== SECTION 3: HOW IT WORKS ========== -->
+        <section class="py-16 max-w-7xl mx-auto px-5">
+            <div class="text-center reveal mb-12">
+                <h2 class="text-3xl md:text-4xl font-medium">Simple <span class="text-accent">4-Step Process</span></h2>
+                <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
+                <p class="text-secondary mt-3 max-w-2xl mx-auto">From request to completion — we make tire service
+                    effortless</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center reveal">
+                    <div
+                        class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">
+                        1</div>
+                    <h3 class="text-lg font-medium mt-4">Request Service</h3>
+                    <p class="text-secondary text-sm">Call, text, or book online — describe your issue.</p>
+                </div>
+                <div class="text-center reveal">
+                    <div
+                        class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">
+                        2</div>
+                    <h3 class="text-lg font-medium mt-4">Get Instant Quote</h3>
+                    <p class="text-secondary text-sm">Receive transparent pricing before we roll out.</p>
+                </div>
+                <div class="text-center reveal">
+                    <div
+                        class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">
+                        3</div>
+                    <h3 class="text-lg font-medium mt-4">Track Our Van</h3>
+                    <p class="text-secondary text-sm">Live GPS tracking with real-time ETA updates.</p>
+                </div>
+                <div class="text-center reveal">
+                    <div
+                        class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">
+                        4</div>
+                    <h3 class="text-lg font-medium mt-4">Service Complete</h3>
+                    <p class="text-secondary text-sm">Digital invoice, warranty card, and inspection report.</p>
+                </div>
+            </div>
+        </section>
+        <!-- ========== SECTION 4: SERVICE PLANS ========== -->
+        <section class="py-16 bg-accent/5">
+            <div class="max-w-7xl mx-auto px-5">
+                <div class="text-center reveal mb-12">
+                    <h2 class="text-3xl md:text-4xl font-medium">Flexible <span class="text-accent">Service Plans</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
+                    <p class="text-secondary mt-3 max-w-2xl mx-auto">Choose the plan that fits your driving needs</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Basic Plan -->
+                    <div
+                        class="bg-card rounded-2xl border border-border hover:shadow-xl transition reveal flex flex-col justify-between h-full">
+                        <div>
+                            <div class="p-6 text-center border-b border-border">
+                                <h3 class="text-2xl font-medium">Basic Care</h3>
+                                <div class="text-4xl font-medium text-accent mt-3">$19<span
+                                        class="text-base text-secondary">/mo</span></div>
+                                <p class="text-secondary text-sm mt-2">Perfect for occasional drivers</p>
+                            </div>
+                            <ul class="p-6 space-y-3">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 2
+                                    tire rotations/year</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 1
+                                    flat repair free</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> TPMS
+                                    check</li>
+                                <li class="flex items-center gap-2 text-secondary"><i class="fas fa-times-circle"></i>
+                                    Emergency priority</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 border-t border-border/50"><button class="w-full btn-outline py-2">Choose Plan
+                                →</button></div>
                     </div>
-                    <h3 class="text-xl font-medium mb-2">TPMS Service</h3>
-                    <p class="text-secondary text-sm">Sensor replacement, reprogramming, and system diagnostics.</p>
-                </div>
-                <span class="inline-block mt-4 text-accent text-sm font-medium">From $25 →</span>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ========== SECTION 3: HOW IT WORKS ========== -->
-<section class="py-16 max-w-7xl mx-auto px-5">
-    <div class="text-center reveal mb-12">
-        <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-chart-line text-accent mr-2"></i> Simple <span class="text-accent">4-Step Process</span></h2>
-        <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-        <p class="text-secondary mt-3 max-w-2xl mx-auto">From request to completion — we make tire service effortless</p>
-    </div>
-    <div class="grid md:grid-cols-4 gap-6">
-        <div class="text-center reveal">
-            <div class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">1</div>
-            <h3 class="text-lg font-medium mt-4">Request Service</h3>
-            <p class="text-secondary text-sm">Call, text, or book online — describe your issue.</p>
-        </div>
-        <div class="text-center reveal">
-            <div class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">2</div>
-            <h3 class="text-lg font-medium mt-4">Get Instant Quote</h3>
-            <p class="text-secondary text-sm">Receive transparent pricing before we roll out.</p>
-        </div>
-        <div class="text-center reveal">
-            <div class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">3</div>
-            <h3 class="text-lg font-medium mt-4">Track Our Van</h3>
-            <p class="text-secondary text-sm">Live GPS tracking with real-time ETA updates.</p>
-        </div>
-        <div class="text-center reveal">
-            <div class="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-2xl font-medium shadow-lg">4</div>
-            <h3 class="text-lg font-medium mt-4">Service Complete</h3>
-            <p class="text-secondary text-sm">Digital invoice, warranty card, and inspection report.</p>
-        </div>
-    </div>
-</section>
-<!-- ========== SECTION 4: SERVICE PLANS ========== -->
-<section class="py-16 bg-accent/5">
-    <div class="max-w-7xl mx-auto px-5">
-        <div class="text-center reveal mb-12">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-tags text-accent mr-2"></i> Flexible <span class="text-accent">Service Plans</span></h2>
-            <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-            <p class="text-secondary mt-3 max-w-2xl mx-auto">Choose the plan that fits your driving needs</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Basic Plan -->
-            <div class="bg-card rounded-2xl border border-border hover:shadow-xl transition reveal flex flex-col justify-between h-full">
-                <div>
-                    <div class="p-6 text-center border-b border-border">
-                        <h3 class="text-2xl font-medium">Basic Care</h3>
-                        <div class="text-4xl font-medium text-accent mt-3">$19<span class="text-base text-secondary">/mo</span></div>
-                        <p class="text-secondary text-sm mt-2">Perfect for occasional drivers</p>
+                    <!-- Premium Plan (Highlighted) -->
+                    <div
+                        class="bg-card rounded-2xl border-2 border-accent hover:shadow-xl transition reveal relative flex flex-col justify-between h-full">
+                        <div
+                            class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-medium z-10">
+                            MOST POPULAR</div>
+                        <div>
+                            <div class="p-6 text-center border-b border-border pt-8">
+                                <h3 class="text-2xl font-medium">Premium Care</h3>
+                                <div class="text-4xl font-medium text-accent mt-3">$49<span
+                                        class="text-base text-secondary">/mo</span></div>
+                                <p class="text-secondary text-sm mt-2">Best value for daily commuters</p>
+                            </div>
+                            <ul class="p-6 space-y-3">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i>
+                                    Unlimited tire rotations</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 4
+                                    flat repairs free/year</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i>
+                                    Priority emergency dispatch</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 15%
+                                    off new tires</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 border-t border-border/50"><button class="w-full btn-primary py-2">Choose Plan
+                                →</button></div>
                     </div>
-                    <ul class="p-6 space-y-3">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 2 tire rotations/year</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 1 flat repair free</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> TPMS check</li>
-                        <li class="flex items-center gap-2 text-secondary"><i class="fas fa-times-circle"></i> Emergency priority</li>
-                    </ul>
-                </div>
-                <div class="p-6 border-t border-border/50"><button class="w-full btn-outline py-2">Choose Plan →</button></div>
-            </div>
-            <!-- Premium Plan (Highlighted) -->
-            <div class="bg-card rounded-2xl border-2 border-accent hover:shadow-xl transition reveal relative flex flex-col justify-between h-full">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-xs font-medium z-10">MOST POPULAR</div>
-                <div>
-                    <div class="p-6 text-center border-b border-border pt-8">
-                        <h3 class="text-2xl font-medium">Premium Care</h3>
-                        <div class="text-4xl font-medium text-accent mt-3">$49<span class="text-base text-secondary">/mo</span></div>
-                        <p class="text-secondary text-sm mt-2">Best value for daily commuters</p>
+                    <!-- Fleet Plan -->
+                    <div
+                        class="bg-card rounded-2xl border border-border hover:shadow-xl transition reveal flex flex-col justify-between h-full">
+                        <div>
+                            <div class="p-6 text-center border-b border-border">
+                                <h3 class="text-2xl font-medium">Fleet Pro</h3>
+                                <div class="text-4xl font-medium text-accent mt-3">$99<span
+                                        class="text-base text-secondary">/vehicle/mo</span></div>
+                                <p class="text-secondary text-sm mt-2">For businesses with 5+ vehicles</p>
+                            </div>
+                            <ul class="p-6 space-y-3">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i>
+                                    Dedicated account manager</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i>
+                                    Monthly fleet inspections</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Bulk
+                                    tire pricing</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i>
+                                    After-hours service</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 border-t border-border/50"><button class="w-full btn-outline py-2">Contact Sales
+                                →</button></div>
                     </div>
-                    <ul class="p-6 space-y-3">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Unlimited tire rotations</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 4 flat repairs free/year</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Priority emergency dispatch</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> 15% off new tires</li>
-                    </ul>
                 </div>
-                <div class="p-6 border-t border-border/50"><button class="w-full btn-primary py-2">Choose Plan →</button></div>
             </div>
-            <!-- Fleet Plan -->
-            <div class="bg-card rounded-2xl border border-border hover:shadow-xl transition reveal flex flex-col justify-between h-full">
-                <div>
-                    <div class="p-6 text-center border-b border-border">
-                        <h3 class="text-2xl font-medium">Fleet Pro</h3>
-                        <div class="text-4xl font-medium text-accent mt-3">$99<span class="text-base text-secondary">/vehicle/mo</span></div>
-                        <p class="text-secondary text-sm mt-2">For businesses with 5+ vehicles</p>
+        </section>
+        <!-- ========== SECTION 5: WHY CHOOSE US ========== -->
+        <section class="py-16 max-w-7xl mx-auto px-5">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <span
+                        class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium mb-4">WHY
+                        DRIVERS TRUST US</span>
+                    <h2 class="text-3xl md:text-4xl font-medium mb-4">We'rComprehensivee <span
+                            class="text-accent">Redefining</span> Mobile Tire Service</h2>
+                    <p class="text-secondary mb-6">No towing, no waiting rooms, no overpriced shops. Just certified
+                        experts arriving at your location with everything needed to get you back on the road safely.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center gap-3"><i class="fas fa-clock text-2xl text-accent"></i>
+                            <div>
+                                <div class="font-medium">Under 30 min</div>
+                                <div class="text-xs text-secondary">Average response</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3"><i class="fas fa-certificate text-2xl text-accent"></i>
+                            <div>
+                                <div class="font-medium">ASE Certified</div>
+                                <div class="text-xs text-secondary">All technicians</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3"><i class="fas fa-truck text-2xl text-accent"></i>
+                            <div>
+                                <div class="font-medium">20+ Vans</div>
+                                <div class="text-xs text-secondary">City-wide coverage</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3"><i class="fas fa-star text-2xl text-accent"></i>
+                            <div>
+                                <div class="font-medium">4.98 Rating</div>
+                                <div class="text-xs text-secondary">From 2.5k+ reviews</div>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="p-6 space-y-3">
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Dedicated account manager</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Monthly fleet inspections</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> Bulk tire pricing</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check-circle text-accent"></i> After-hours service</li>
-                    </ul>
+                    <div class="flex gap-4"><span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs">⭐⭐⭐⭐⭐
+                            "They arrived in 22 minutes!"</span><span
+                            class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs">🚛 "Saved me from towing
+                            fees"</span></div>
                 </div>
-                <div class="p-6 border-t border-border/50"><button class="w-full btn-outline py-2">Contact Sales →</button></div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ========== SECTION 5: WHY CHOOSE US ========== -->
-<section class="py-16 max-w-7xl mx-auto px-5">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-            <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium mb-4">WHY DRIVERS TRUST US</span>
-            <h2 class="text-3xl md:text-4xl font-medium mb-4">We'rComprehensivee <span class="text-accent">Redefining</span> Mobile Tire Service</h2>
-            <p class="text-secondary mb-6">No towing, no waiting rooms, no overpriced shops. Just certified experts arriving at your location with everything needed to get you back on the road safely.</p>
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <div class="flex items-center gap-3"><i class="fas fa-clock text-2xl text-accent"></i><div><div class="font-medium">Under 30 min</div><div class="text-xs text-secondary">Average response</div></div></div>
-                <div class="flex items-center gap-3"><i class="fas fa-certificate text-2xl text-accent"></i><div><div class="font-medium">ASE Certified</div><div class="text-xs text-secondary">All technicians</div></div></div>
-                <div class="flex items-center gap-3"><i class="fas fa-truck text-2xl text-accent"></i><div><div class="font-medium">20+ Vans</div><div class="text-xs text-secondary">City-wide coverage</div></div></div>
-                <div class="flex items-center gap-3"><i class="fas fa-star text-2xl text-accent"></i><div><div class="font-medium">4.98 Rating</div><div class="text-xs text-secondary">From 2.5k+ reviews</div></div></div>
-            </div>
-            <div class="flex gap-4"><span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs">⭐⭐⭐⭐⭐ "They arrived in 22 minutes!"</span><span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-xs">🚛 "Saved me from towing fees"</span></div>
-        </div>
-        <div class="grid grid-cols-2 gap-4 reveal">
-            <img src="assets/tire-technician.jpg" class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover" alt="technician working">
-            <img src="assets/mobile-service-van-alt.jpg" class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover mt-8" alt="mobile van">
-            <img src="assets/tire-repair-service-alt.jpg" class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover -mt-4" alt="tire repair">
-            <img src="assets/mobile-service-van.jpg" class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover" alt="service van">
-        </div>
-    </div>
-</section>
-<!-- ========== SECTION 6: FAQ + CTA ========== -->
-<section class="py-16 bg-[var(--hover-bg)]/40">
-    <div class="max-w-7xl mx-auto px-5">
-        <div class="text-center reveal mb-12">
-            <h2 class="text-3xl md:text-4xl font-medium"><i class="fas fa-question-circle text-accent mr-2"></i> Frequently <span class="text-accent">Asked Questions</span></h2>
-            <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
-            <p class="text-secondary mt-3 max-w-2xl mx-auto">Everything you need to know about our mobile tire service</p>
-        </div>
-        <div class="grid lg:grid-cols-2 gap-8">
-            <div class="space-y-4 reveal">
-                <div class="bg-card rounded-xl p-5 border border-border">
-                    <button class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">How fast can you arrive? <i class="fas fa-chevron-down text-accent transition-transform"></i></button>
-                    <div class="faq-answer hidden mt-2 text-secondary text-sm">Our average response time is under 30 minutes within city limits. During peak hours, max wait is 45 minutes. You'll receive live tracking once dispatched.</div>
-                </div>
-                <div class="bg-card rounded-xl p-5 border border-border">
-                    <button class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">Do you come to my home or office? <i class="fas fa-chevron-down text-accent transition-transform"></i></button>
-                    <div class="faq-answer hidden mt-2 text-secondary text-sm">Yes! We service any safe accessible location — home, workplace, parking lots, even roadside. Just provide the address during booking.</div>
-                </div>
-                <div class="bg-card rounded-xl p-5 border border-border">
-                    <button class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">What brands of tires do you carry? <i class="fas fa-chevron-down text-accent transition-transform"></i></button>
-                    <div class="faq-answer hidden mt-2 text-secondary text-sm">Michelin, Bridgestone, Goodyear, Continental, Pirelli, and budget-friendly options. All come with manufacturer warranty + our labor warranty.</div>
-                </div>
-                <div class="bg-card rounded-xl p-5 border border-border">
-                    <button class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">Do you offer emergency roadside service? <i class="fas fa-chevron-down text-accent transition-transform"></i></button>
-                    <div class="faq-answer hidden mt-2 text-secondary text-sm">Absolutely. Our 24/7 emergency hotline connects you to the nearest available technician. Flat repairs, spare tire installation, and towing coordination available.</div>
+                <div class="grid grid-cols-2 gap-4 reveal">
+                    <img src="assets/mobile-service-van-alt.jpg"
+                        class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover"
+                        alt="technician working">
+                    <img src="assets/mobile-service-van-alt.jpg"
+                        class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover mt-8"
+                        alt="mobile van">
+                    <img src="assets/tire-repair-service-alt.jpg"
+                        class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover -mt-4"
+                        alt="tire repair">
+                    <img src="assets/mobile-service-van.jpg"
+                        class="rounded-2xl shadow-lg border border-border h-48 w-full object-cover" alt="service van">
                 </div>
             </div>
-            <div class="bg-card rounded-2xl p-8 border border-border reveal text-center">
-                <i class="fas fa-headset text-5xl text-accent mb-4"></i>
-                <h3 class="text-2xl font-medium mb-2">Still Have Questions?</h3>
-                <p class="text-secondary text-sm mb-6">Our service experts are ready to help 24/7</p>
-                <div class="space-y-3">
-                    <button class="w-full btn-primary py-3 rounded-xl font-medium"><i class="fas fa-phone-alt mr-2"></i> Call (800) 555-ROLL</button>
-                    <button class="w-full btn-outline py-3 rounded-xl font-medium"><i class="fab fa-whatsapp mr-2"></i> WhatsApp Chat</button>
-                    <p class="text-xs text-secondary mt-4">Or email: <span class="text-accent">help@torque.com</span></p>
+        </section>
+        <!-- ========== SECTION 6: FAQ + CTA ========== -->
+        <section class="py-16 bg-[var(--hover-bg)]/40">
+            <div class="max-w-7xl mx-auto px-5">
+                <div class="text-center reveal mb-12">
+                    <h2 class="text-3xl md:text-4xl font-medium">Frequently <span class="text-accent">Asked
+                            Questions</span></h2>
+                    <div class="w-20 h-1 bg-accent mx-auto mt-3 rounded-full"></div>
+                    <p class="text-secondary mt-3 max-w-2xl mx-auto">Everything you need to know about our mobile tire
+                        service</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-4 reveal">
+                        <div class="bg-card rounded-xl p-5 border border-border">
+                            <button
+                                class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">How
+                                fast can you arrive? <i
+                                    class="fas fa-chevron-down text-accent transition-transform"></i></button>
+                            <div class="faq-answer hidden mt-2 text-secondary text-sm">Our average response time is
+                                under 30 minutes within city limits. During peak hours, max wait is 45 minutes. You'll
+                                receive live tracking once dispatched.</div>
+                        </div>
+                        <div class="bg-card rounded-xl p-5 border border-border">
+                            <button
+                                class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">Do
+                                you come to my home or office? <i
+                                    class="fas fa-chevron-down text-accent transition-transform"></i></button>
+                            <div class="faq-answer hidden mt-2 text-secondary text-sm">Yes! We service any safe
+                                accessible location — home, workplace, parking lots, even roadside. Just provide the
+                                address during booking.</div>
+                        </div>
+                        <div class="bg-card rounded-xl p-5 border border-border">
+                            <button
+                                class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">What
+                                brands of tires do you carry? <i
+                                    class="fas fa-chevron-down text-accent transition-transform"></i></button>
+                            <div class="faq-answer hidden mt-2 text-secondary text-sm">Michelin, Bridgestone, Goodyear,
+                                Continental, Pirelli, and budget-friendly options. All come with manufacturer warranty +
+                                our labor warranty.</div>
+                        </div>
+                        <div class="bg-card rounded-xl p-5 border border-border">
+                            <button
+                                class="flex justify-between items-center w-full text-left font-medium text-lg faq-toggle">Do
+                                you offer emergency roadside service? <i
+                                    class="fas fa-chevron-down text-accent transition-transform"></i></button>
+                            <div class="faq-answer hidden mt-2 text-secondary text-sm">Absolutely. Our 24/7 emergency
+                                hotline connects you to the nearest available technician. Flat repairs, spare tire
+                                installation, and towing coordination available.</div>
+                        </div>
+                    </div>
+                    <div class="bg-card rounded-2xl p-8 border border-border reveal text-center">
+                        <i class="fas fa-headset text-5xl text-accent mb-4"></i>
+                        <h3 class="text-2xl font-medium mb-2">Still Have Questions?</h3>
+                        <p class="text-secondary text-sm mb-6">Our service experts are ready to help 24/7</p>
+                        <div class="space-y-3">
+                            <button class="w-full btn-primary py-3 rounded-xl font-medium"><i
+                                    class="fas fa-phone mr-2"></i> Call (800) 555-ROLL</button>
+                            <button class="w-full btn-outline py-3 rounded-xl font-medium"><i
+                                    class="fab fa-whatsapp mr-2"></i> WhatsApp Chat</button>
+                            <p class="text-xs text-secondary mt-4">Or email: <span
+                                    class="text-accent">help@torque.com</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bottom CTA Banner -->
+                <div class="mt-12 bg-accent rounded-2xl p-8 text-center reveal">
+                    <h3 class="text-2xl md:text-3xl font-medium text-white mb-2">Ready for fast, reliable tire service?
+                    </h3>
+                    <p class="text-white/80 mb-6">Book your mobile appointment now — first rotation free for new
+                        customers</p>
+                    <button
+                        class="bg-white text-accent px-8 py-3 rounded-full font-medium hover:shadow-lg transition"><i
+                            class="fas fa-calendar-check mr-2"></i> Schedule Free Quote</button>
                 </div>
             </div>
-        </div>
-        <!-- Bottom CTA Banner -->
-        <div class="mt-12 bg-accent rounded-2xl p-8 text-center reveal">
-            <h3 class="text-2xl md:text-3xl font-medium text-white mb-2">Ready for fast, reliable tire service?</h3>
-            <p class="text-white/80 mb-6">Book your mobile appointment now — first rotation free for new customers</p>
-            <button class="bg-white text-accent px-8 py-3 rounded-full font-medium hover:shadow-lg transition"><i class="fas fa-calendar-check mr-2"></i> Schedule Free Quote</button>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- Add FAQ toggle JavaScript -->
-<script>
-    document.querySelectorAll('.faq-toggle').forEach(button => {
-        button.addEventListener('click', () => {
-            const answer = button.parentElement.querySelector('.faq-answer');
-            const icon = button.querySelector('.fa-chevron-down');
-            answer.classList.toggle('hidden');
-            icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-        });
-    });
-</script>        
+        <!-- Add FAQ toggle JavaScript -->
+        <script>
+            document.querySelectorAll('.faq-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.parentElement.querySelector('.faq-answer');
+                    const icon = button.querySelector('.fa-chevron-down');
+                    answer.classList.toggle('hidden');
+                    icon.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
+            });
+        </script>
     </main>
 
     <!-- Footer -->
@@ -784,13 +914,14 @@
         style="background: var(--footer-bg); color: var(--footer-text);">
         <div class="max-w-7xl mx-auto px-5 grid grid-cols-2 md:grid-cols-6 lg:grid-cols-5 gap-8">
             <div class="col-span-2 md:col-span-3 lg:col-span-1">
-                <a href="index.html" class="text-2xl font-bold tracking-tight text-accent" style="font-weight: 700 !important;">Torque</a>
+                <a href="index.html" class="text-2xl font-bold tracking-tight text-accent"
+                    style="font-weight: 700 !important;">Torque</a>
                 <p class="text-xs text-slate-400 mt-3 leading-relaxed">
                     Premier 24/7 on-demand mobile tire fitting and flat repair service. Shop-grade expertise brought
                     directly to your location.
                 </p>
                 <div class="mt-4 space-y-2 text-xs text-slate-300">
-                    <p class="flex items-center gap-2"><i class="fas fa-phone-alt text-accent"></i> (800) 555-ROLL</p>
+                    <p class="flex items-center gap-2"><i class="fas fa-phone text-accent"></i> (800) 555-ROLL</p>
                     <p class="flex items-center gap-2"><i class="far fa-clock text-accent"></i> 24 Hours / 7 Days</p>
                 </div>
                 <div class="flex gap-2.5 mt-5">
@@ -944,7 +1075,7 @@
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.dropdown-toggle').forEach(link => link.classList.remove('active'));
             document.querySelectorAll('.dropdown-menu a').forEach(link => link.classList.remove('text-accent', 'font-medium'));
-            
+
             const mobileDrawer = document.getElementById('mobile-drawer');
             if (mobileDrawer) {
                 mobileDrawer.querySelectorAll('a').forEach(link => {
@@ -997,11 +1128,11 @@
                         if (!link.classList.contains('rounded-full')) {
                             link.classList.add('text-accent', 'font-medium');
                         }
-                        
+
                         // Handle parents/submenus
                         const homeSubmenu = document.getElementById('mobile-home-submenu');
                         const dashboardSubmenu = document.getElementById('mobile-dashboard-submenu');
-                        
+
                         if (homeSubmenu && homeSubmenu.contains(link)) {
                             const homeToggle = document.getElementById('mobile-home-toggle');
                             if (homeToggle) homeToggle.classList.add('text-accent');
@@ -1021,7 +1152,7 @@
                     if (homeToggle) homeToggle.classList.add('text-accent');
                     const homeSubmenu = document.getElementById('mobile-home-submenu');
                     if (homeSubmenu) homeSubmenu.classList.remove('hidden');
-                    
+
                     const matchingLink = mobileDrawer.querySelector(`a[href="${currentPage}"]`);
                     if (matchingLink) {
                         matchingLink.classList.add('active', 'text-accent', 'font-medium');
@@ -1035,10 +1166,13 @@
         // MOCK support for home2 version (just stays same design but content identical, but we respect current page path)
         if (window.location.pathname.includes('home2.html')) { document.title = "TorqueSwift | Performance Pro Edition"; }
     </script>
+    <!-- Floating Call Button -->
+    <a href="tel:8005557655" class="fixed bottom-6 right-6 bg-accent text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-[90] hover:bg-accent-dark transition-transform hover:scale-110 flex md:hidden" style="box-shadow: 0 4px 14px rgba(224, 90, 42, 0.5);">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
 </body>
 
 </html>
-
 
 
 
